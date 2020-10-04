@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Main = (props) => {
+const MainPage = (props) => {
   const {offersCount} = props;
   return (
     <div className="page page--gray page--main">
@@ -270,8 +270,8 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
+MainPage.propTypes = {
   offersCount: PropTypes.number.isRequired
 };
 
-export default Main;
+export default MainPage;
