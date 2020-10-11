@@ -12,7 +12,7 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact>
-          <MainPage offersCount={offersCount}/>
+          <MainPage offers={offers} offersCount={offersCount}/>
         </Route>
         <Route path='/login' component={LoginPage} exact/>
         <Route path='/favorites' component={FavoritesPage} exact/>

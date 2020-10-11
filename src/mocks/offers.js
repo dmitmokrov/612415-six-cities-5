@@ -2,6 +2,7 @@ import {OfferType} from '../const';
 
 export const offers = [
   {
+    id: 1,
     title: `Beautiful & luxurious apartment at great location`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     type: OfferType.APARTMENT,
@@ -19,6 +20,7 @@ export const offers = [
     }
   },
   {
+    id: 2,
     title: `Wood and stone place`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: OfferType.PRIVATE_ROOM,
@@ -36,6 +38,7 @@ export const offers = [
     }
   },
   {
+    id: 3,
     title: `Canal View Prinsengracht`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     type: OfferType.HOTEL,
@@ -53,6 +56,7 @@ export const offers = [
     }
   },
   {
+    id: 4,
     title: `Nice, cozy, warm big bed apartment`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: OfferType.HOUSE,
