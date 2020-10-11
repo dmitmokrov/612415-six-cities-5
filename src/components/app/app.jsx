@@ -16,7 +16,7 @@ const App = (props) => {
         </Route>
         <Route path='/login' component={LoginPage} exact/>
         <Route path='/favorites' component={FavoritesPage} exact/>
-        <Route path='/offer/:id?' component={OfferPage} exact/>
+        <Route path='/offer/:id' component={OfferPage} exact/>
         <Redirect to='/'/>
       </Switch>
     </BrowserRouter>
