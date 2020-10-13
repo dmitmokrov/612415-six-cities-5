@@ -9,13 +9,14 @@ export const offers = [
     price: 120,
     rating: 4,
     isPremium: true,
+    isFavorite: false,
     bedroomsCount: 4,
     guestsMaxCount: 4,
     features: [`Wi-Fi`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`],
     photos: [`https://dummyimage.com/260x200/00f.jpg&text=1`, `https://dummyimage.com/260x200/0f0.jpg&text=2`, `https://dummyimage.com/260x200/0ff.jpg&text=3`, `https://dummyimage.com/260x200/f00.jpg&text=4`, `https://dummyimage.com/260x200/f0f.jpg&text=5`, `https://dummyimage.com/260x200/ff0.jpg&text=6`],
     host: {
       name: `Angelina`,
-      avatar: `https://fillmurray.com/100/100`,
+      avatar: `https://www.fillmurray.com/100/100`,
       isSuper: true
     }
   },
@@ -27,13 +28,14 @@ export const offers = [
     price: 80,
     rating: 4,
     isPremium: false,
+    isFavorite: true,
     bedroomsCount: 1,
     guestsMaxCount: 3,
     features: [`Wi-Fi`, `Washing machine`, `Towels`],
     photos: [`https://dummyimage.com/260x200/0f0.jpg&text=1`, `https://dummyimage.com/260x200/0ff.jpg&text=2`, `https://dummyimage.com/260x200/f00.jpg&text=3`, `https://dummyimage.com/260x200/f0f.jpg&text=4`],
     host: {
       name: `David`,
-      avatar: `https://fillmurray.com/105/105`,
+      avatar: `https://www.fillmurray.com/105/105`,
       isSuper: true
     }
   },
@@ -45,13 +47,14 @@ export const offers = [
     price: 132,
     rating: 4,
     isPremium: false,
+    isFavorite: false,
     bedroomsCount: 3,
     guestsMaxCount: 5,
     features: [`Wi-Fi`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
     photos: [`https://dummyimage.com/260x200/0ff.jpg&text=1`, `https://dummyimage.com/260x200/f00.jpg&text=2`, `https://dummyimage.com/260x200/f0f.jpg&text=3`],
     host: {
       name: `Max`,
-      avatar: `https://fillmurray.com/110/110`,
+      avatar: `https://www.fillmurray.com/110/110`,
       isSuper: true
     }
   },
@@ -63,13 +66,14 @@ export const offers = [
     price: 180,
     rating: 5,
     isPremium: true,
+    isFavorite: true,
     bedroomsCount: 2,
     guestsMaxCount: 2,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Fridge`],
     photos: [`https://dummyimage.com/260x200/f00.jpg&text=1`, `https://dummyimage.com/260x200/f0f.jpg&text=2`, `https://dummyimage.com/260x200/ff0.jpg&text=3`, `https://dummyimage.com/260x200/00f.jpg&text=4`],
     host: {
       name: `Bruce`,
-      avatar: `https://fillmurray.com/120/120`,
+      avatar: `https://www.fillmurray.com/120/120`,
       isSuper: true
     }
   }

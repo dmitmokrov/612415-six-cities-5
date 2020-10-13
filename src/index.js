@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 import {offers} from './mocks/offers';
-
-const offersCount = 312;
+import {reviews} from './mocks/reviews';
 
 ReactDOM.render(
     <App
       offers={offers}
-      offersCount={offersCount}
+      reviews={reviews}
     />,
     document.querySelector(`#root`)
 );

@@ -7,16 +7,20 @@ import FavoritesPage from '../pages/favorites-page/favorites-page';
 import OfferPage from '../pages/offer-page/offer-page';
 
 const App = (props) => {
-  const {offers, offersCount} = props;
+  const {offers, reviews} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route path='/' exact>
-          <MainPage offers={offers} offersCount={offersCount}/>
+          <MainPage offers={offers}/>
         </Route>
         <Route path='/login' component={LoginPage} exact/>
-        <Route path='/favorites' component={FavoritesPage} exact/>
-        <Route path='/offer/:id' component={OfferPage} exact/>
+        <Route path='/favorites' exact>
+          <FavoritesPage offers={offers.filter((offer) => offer.isFavorite)}/>
+        </Route>
+        <Route path='/offer/:id' exact>
+          <OfferPage offer={offers[0]} reviews={reviews[0]}/>
+        </Route>
         <Redirect to='/'/>
       </Switch>
     </BrowserRouter>
@@ -43,7 +47,18 @@ App.propTypes = {
         })
       })
   ).isRequired,
-  offersCount: PropTypes.number.isRequired
+  reviews: PropTypes.arrayOf(
+      PropTypes.arrayOf(
+          PropTypes.shape({
+            author: PropTypes.shape({
+              name: PropTypes.string,
+              avatar: PropTypes.string
+            }),
+            comment: PropTypes.string,
+            rating: PropTypes.number
+          })
+      )
+  )
 };
 
 export default App;

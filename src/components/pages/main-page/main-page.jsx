@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import OffersList from '../../offers-list/offers-list';
 
 const MainPage = (props) => {
-  const {offers, offersCount} = props;
+  const {offers} = props;
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -71,7 +71,7 @@ const MainPage = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -107,7 +107,6 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   offers: PropTypes.array.isRequired,
-  offersCount: PropTypes.number.isRequired
 };
 
 export default MainPage;
