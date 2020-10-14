@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const OfferCard = (props) => {
@@ -44,7 +45,7 @@ const OfferCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to="/offer/2">{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -53,7 +54,7 @@ const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
-  offer: PropTypes.object.isRequired, // Поправить
+  offer: PropTypes.object.isRequired,
   onHover: PropTypes.func.isRequired
 };
 

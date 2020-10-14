@@ -93,7 +93,9 @@ const MainPage = (props) => {
                   <option className="places__option" value="top-rated">Top rated first</option>
                 </select> */}
               </form>
+
               <OffersList offers={offers}/>
+
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -106,7 +108,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired
 };
 
 export default MainPage;

@@ -36,7 +36,7 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.array
+  offers: PropTypes.array,
 };
 
 export default OffersList;
