@@ -3,13 +3,14 @@ import {OfferType} from '../const';
 export const offers = [
   {
     id: 1,
+    city: `Amsterdam`,
     title: `Beautiful & luxurious apartment at great location`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     type: OfferType.APARTMENT,
     price: 120,
     rating: 4,
     isPremium: true,
-    isFavorite: false,
+    isFavorite: true,
     bedroomsCount: 4,
     guestsMaxCount: 4,
     features: [`Wi-Fi`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`],
@@ -22,6 +23,7 @@ export const offers = [
   },
   {
     id: 2,
+    city: `Amsterdam`,
     title: `Wood and stone place`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: OfferType.PRIVATE_ROOM,
@@ -41,6 +43,7 @@ export const offers = [
   },
   {
     id: 3,
+    city: `Hamburg`,
     title: `Canal View Prinsengracht`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     type: OfferType.HOTEL,
@@ -60,6 +63,7 @@ export const offers = [
   },
   {
     id: 4,
+    city: `Paris`,
     title: `Nice, cozy, warm big bed apartment`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: OfferType.HOUSE,

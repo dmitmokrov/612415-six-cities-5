@@ -2,11 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../../header/header';
-import FavoritesList from '../../favorites-list/favorites-list';
+import FavoritesCities from '../../favorites-cities/favorites-cities';
 import {AppRoute} from '../../../const';
 
 const FavoritesPage = (props) => {
   const {offers} = props;
+
   return (
     <div className="page">
       <Header/>
@@ -16,18 +17,7 @@ const FavoritesPage = (props) => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <FavoritesList offers={offers}/>
-                </div>
-              </li>
+              <FavoritesCities offers={offers}/>
             </ul>
           </section>
         </div>
