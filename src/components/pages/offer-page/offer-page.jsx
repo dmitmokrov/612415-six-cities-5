@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../../header/header';
 import PhotosList from '../../photos-list/photos-list';
 import FeaturesList from '../../features-list/features-list';
-import ReviewItem from '../../review-item/review-item';
+import ReviewsList from '../../reviews-list/reviews-list';
 import ReviewForm from '../../review-form/review-form';
 
 const OfferPage = (props) => {
@@ -88,11 +88,9 @@ const OfferPage = (props) => {
               <section className="property__reviews reviews">
                 {review &&
                   <Fragment>
-                    <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{review.length}</span></h2>
+                    <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{review.comments.length}</span></h2>
                     <ul className="reviews__list">
-                      {review.comments.map((elem) =>
-                        <ReviewItem review={elem} key={elem.comment}/>
-                      )}
+                      <ReviewsList reviews={review.comments}/>
                     </ul>
                   </Fragment>
                 }
