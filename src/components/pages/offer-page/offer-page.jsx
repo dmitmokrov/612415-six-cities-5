@@ -6,7 +6,9 @@ import ReviewForm from '../../review-form/review-form';
 import {AppRoute} from '../../../const';
 
 const OfferPage = (props) => {
-  const {offer, reviews} = props;
+  const {offers, reviews} = props;
+  const offer = offers.find((elem) => elem.id.toString() === props.match.params.id);
+  const review = reviews.find((elem) => elem.id.toString() === props.match.params.id);
   const {title, description, type, price, rating, isPremium, bedroomsCount, guestsMaxCount, features, photos, host} = offer;
   return (
     <div className="page">
@@ -114,8 +116,8 @@ const OfferPage = (props) => {
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 <ul className="reviews__list">
-                  {reviews.map((review) =>
-                    <ReviewItem review={review} key={review.comment}/>
+                  {review.comments.map((elem) =>
+                    <ReviewItem review={elem} key={elem.comment}/>
                   )}
                 </ul>
 
@@ -234,8 +236,9 @@ const OfferPage = (props) => {
 };
 
 OfferPage.propTypes = {
-  offer: PropTypes.object.isRequired,
-  reviews: PropTypes.array.isRequired
+  offers: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 export default OfferPage;

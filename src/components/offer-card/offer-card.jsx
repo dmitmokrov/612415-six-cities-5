@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+// import {AppRoute} from '../../const';
 
 const OfferCard = (props) => {
   const {offer, onHover} = props;
-  const {title, type, price, rating, isPremium, photos} = offer;
+  const {id, title, type, price, rating, isPremium, photos} = offer;
 
   return (
     <article
@@ -44,7 +45,7 @@ const OfferCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to="/offer/2">{title}</Link>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

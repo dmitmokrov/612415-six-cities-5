@@ -19,9 +19,9 @@ const App = (props) => {
         <Route path={AppRoute.FAVORITES} exact>
           <FavoritesPage offers={offers.filter((offer) => offer.isFavorite)}/>
         </Route>
-        <Route path={AppRoute.OFFER} exact>
-          <OfferPage offer={offers[0]} reviews={reviews[0]}/>
-        </Route>
+        <Route path={AppRoute.OFFER} exact
+          render={(prop) => <OfferPage {...prop} offers={offers} reviews={reviews}/>}
+        />
         <Redirect to={AppRoute.HOME}/>
       </Switch>
     </BrowserRouter>
@@ -49,17 +49,20 @@ App.propTypes = {
       })
   ).isRequired,
   reviews: PropTypes.arrayOf(
-      PropTypes.arrayOf(
-          PropTypes.shape({
-            author: PropTypes.shape({
-              name: PropTypes.string,
-              avatar: PropTypes.string
-            }),
-            comment: PropTypes.string,
-            rating: PropTypes.number
-          })
-      )
-  )
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        comments: PropTypes.arrayOf(
+            PropTypes.shape({
+              author: PropTypes.shape({
+                name: PropTypes.string,
+                avatar: PropTypes.string
+              }),
+              comment: PropTypes.string,
+              rating: PropTypes.number
+            })
+        )
+      })
+  ).isRequired
 };
 
 export default App;
