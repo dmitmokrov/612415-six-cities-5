@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../header/header';
+import PhotosList from '../../photos-list/photos-list';
 import ReviewItem from '../../review-item/review-item';
 import ReviewForm from '../../review-form/review-form';
 
@@ -17,11 +18,7 @@ const OfferPage = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {photos.map((photo, i) =>
-                <div className="property__image-wrapper" key={photo + i}>
-                  <img className="property__image" src={photo} alt="Photo studio"/>
-                </div>
-              )}
+              <PhotosList photos={photos}/>
             </div>
           </div>
           <div className="property__container container">
