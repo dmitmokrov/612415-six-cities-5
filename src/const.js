@@ -4,3 +4,10 @@ export const OfferType = {
   HOUSE: `House`,
   HOTEL: `Hotel`
 };
+
+export const AppRoute = {
+  HOME: `/`,
+  FAVORITES: `/favorites`,
+  LOGIN: `/login`,
+  OFFER: `/offer/:id`
+};

@@ -5,23 +5,24 @@ import MainPage from '../pages/main-page/main-page';
 import LoginPage from '../pages/login-page/login-page';
 import FavoritesPage from '../pages/favorites-page/favorites-page';
 import OfferPage from '../pages/offer-page/offer-page';
+import {AppRoute} from '../../const';
 
 const App = (props) => {
   const {offers, reviews} = props;
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact>
+        <Route path={AppRoute.HOME} exact>
           <MainPage offers={offers}/>
         </Route>
-        <Route path='/login' component={LoginPage} exact/>
-        <Route path='/favorites' exact>
+        <Route path={AppRoute.LOGIN} component={LoginPage} exact/>
+        <Route path={AppRoute.FAVORITES} exact>
           <FavoritesPage offers={offers.filter((offer) => offer.isFavorite)}/>
         </Route>
-        <Route path='/offer/:id' exact>
+        <Route path={AppRoute.OFFER} exact>
           <OfferPage offer={offers[0]} reviews={reviews[0]}/>
         </Route>
-        <Redirect to='/'/>
+        <Redirect to={AppRoute.HOME}/>
       </Switch>
     </BrowserRouter>
   );

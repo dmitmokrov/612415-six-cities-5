@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FavoriteCard from '../../favorite-card/favorite-card';
+import {AppRoute} from '../../../const';
 
 const FavoritesPage = (props) => {
   const {offers} = props;
@@ -11,7 +12,7 @@ const FavoritesPage = (props) => {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Link className="header__logo-link" to="/">
+              <Link className="header__logo-link" to={AppRoute.HOME}>
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
               </Link>
             </div>
@@ -56,9 +57,9 @@ const FavoritesPage = (props) => {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.HOME}>
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-        </a>
+        </Link>
       </footer>
     </div>
   );

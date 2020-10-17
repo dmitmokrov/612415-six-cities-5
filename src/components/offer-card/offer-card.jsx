@@ -14,11 +14,10 @@ const OfferCard = (props) => {
       }}
     >
       {
-        isPremium ?
+        isPremium &&
           <div className="place-card__mark">
             <span>Premium</span>
           </div>
-          : null
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
