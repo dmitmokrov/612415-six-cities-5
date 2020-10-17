@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../header/header';
 import PhotosList from '../../photos-list/photos-list';
+import FeaturesList from '../../features-list/features-list';
 import ReviewItem from '../../review-item/review-item';
 import ReviewForm from '../../review-form/review-form';
 
@@ -65,11 +66,7 @@ const OfferPage = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {features.map((feature) =>
-                    <li className="property__inside-item" key={feature}>
-                      {feature}
-                    </li>
-                  )}
+                  <FeaturesList features={features}/>
                 </ul>
               </div>
               <div className="property__host">
