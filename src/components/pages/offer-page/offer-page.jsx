@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReviewItem from '../../review-item/review-item';
@@ -114,12 +114,16 @@ const OfferPage = (props) => {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                <ul className="reviews__list">
-                  {review.comments.map((elem) =>
-                    <ReviewItem review={elem} key={elem.comment}/>
-                  )}
-                </ul>
+                {review &&
+                  <Fragment>
+                    <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{review.length}</span></h2>
+                    <ul className="reviews__list">
+                      {review.comments.map((elem) =>
+                        <ReviewItem review={elem} key={elem.comment}/>
+                      )}
+                    </ul>
+                  </Fragment>
+                }
 
                 <ReviewForm/>
 

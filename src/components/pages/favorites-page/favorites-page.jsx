@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import FavoriteCard from '../../favorite-card/favorite-card';
+import FavoritesList from '../../favorites-list/favorites-list';
+// import FavoriteCard from '../../favorite-card/favorite-card';
 import {AppRoute} from '../../../const';
 
 const FavoritesPage = (props) => {
@@ -44,13 +45,9 @@ const FavoritesPage = (props) => {
                     </a>
                   </div>
                 </div>
-                <div className="favorites__places">
-                  {offers.map((offer) => (
-                    <FavoriteCard
-                      offer={offer}
-                      key={offer.id}/>
-                  ))}
-                </div>
+
+                <FavoritesList offers={offers}/>
+
               </li>
             </ul>
           </section>
