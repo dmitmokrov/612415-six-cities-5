@@ -25,9 +25,9 @@ class OffersList extends PureComponent {
       <div className="cities__places-list places__list tabs__content">
         {offers.map((offer) => {
           return <OfferCard
-            key={offer.id}
             offer={offer}
             onHover={this.handleOfferCardHover}
+            key={offer.id}
           />;
         })}
       </div>

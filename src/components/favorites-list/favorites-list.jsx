@@ -1,14 +1,16 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import FavoriteCard from '../favorite-card/favorite-card';
+import OfferCard from '../offer-card/offer-card';
+import {AppRoute} from '../../const';
 
 const FavoritesList = (props) => {
   const {offers} = props;
   return (
     <Fragment>
       {offers.map((offer) => (
-        <FavoriteCard
+        <OfferCard
           offer={offer}
+          page={AppRoute.FAVORITES}
           key={offer.id}/>
       ))}
     </Fragment>
