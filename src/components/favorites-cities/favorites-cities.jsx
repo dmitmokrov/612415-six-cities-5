@@ -4,11 +4,10 @@ import FavoritesList from '../favorites-list/favorites-list';
 
 const FavoritesCities = (props) => {
   const {offers} = props;
-  const uniqueCities = new Set();
-  offers.forEach((offer) => uniqueCities.add(offer.city));
+  const uniqueCities = [...new Set(offers.map((elem) => elem.city))];
 
   return (
-    [...uniqueCities].map((city) =>
+    uniqueCities.map((city) =>
       <li className="favorites__locations-items" key={city}>
         <div className="favorites__locations locations locations--current">
           <div className="locations__item">
