@@ -4,7 +4,12 @@ import leaflet from 'leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 
 class Map extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
+    const {offers} = this.props;
     const city = [52.38333, 4.9]; // Амстердам
     const icon = leaflet.icon({
       iconUrl: `./img/pin.svg`,
@@ -17,7 +22,7 @@ class Map extends PureComponent {
       zoomControl: false,
       marker: true
     });
-    const offerCords = [52.3709553943508, 4.89309666406198];
+
     map.setView(city, zoom);
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -25,10 +30,11 @@ class Map extends PureComponent {
       })
       .addTo(map);
 
-
-    leaflet
-      .marker(offerCords, {icon})
-      .addTo(map);
+    offers.forEach((offer) => {
+      leaflet
+        .marker(offer.coords, {icon})
+        .addTo(map);
+    });
   }
 
   render() {
@@ -37,5 +43,9 @@ class Map extends PureComponent {
     );
   }
 }
+
+Map.propTypes = {
+  offers: PropTypes.array
+};
 
 export default Map;
