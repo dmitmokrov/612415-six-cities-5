@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FavoritesList from '../favorites-list/favorites-list';
+import CardsList from '../cards-list/cards-list';
+import {favoriteCardOptions} from '../../const';
 
 const FavoritesCities = (props) => {
   const {offers} = props;
@@ -17,7 +18,7 @@ const FavoritesCities = (props) => {
           </div>
         </div>
         <div className="favorites__places">
-          <FavoritesList offers={offers.filter((elem) => elem.city === city)}/>
+          <CardsList cardOptions={favoriteCardOptions} offers={offers.filter((elem) => elem.city === city)}/>
         </div>
       </li>
     )
