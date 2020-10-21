@@ -19,7 +19,8 @@ export const offers = [
       name: `Angelina`,
       avatar: `https://www.fillmurray.com/100/100`,
       isSuper: true
-    }
+    },
+    coords: [52.3909553943508, 4.85309666406198]
   },
   {
     id: 2,
@@ -39,7 +40,8 @@ export const offers = [
       name: `David`,
       avatar: `https://www.fillmurray.com/105/105`,
       isSuper: true
-    }
+    },
+    coords: [52.369553943508, 4.85309666406198]
   },
   {
     id: 3,
@@ -59,7 +61,8 @@ export const offers = [
       name: `Max`,
       avatar: `https://www.fillmurray.com/110/110`,
       isSuper: true
-    }
+    },
+    coords: [52.3909553943508, 4.929309666406198]
   },
   {
     id: 4,
@@ -79,6 +82,7 @@ export const offers = [
       name: `Bruce`,
       avatar: `https://www.fillmurray.com/120/120`,
       isSuper: true
-    }
+    },
+    coords: [52.3809553943508, 4.939309666406198]
   }
 ];
