@@ -1,16 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {AppRoute} from '../../const';
 
-const OfferCard = (props) => {
-  const {offer, page, onHover} = props;
+const Card = (props) => {
+  const {cardOptions, offer, onHover} = props;
+  const {cardClassName, isHiddenPremiumMark, imageWrapperClassName, imageParams, bookmarkPrefix} = cardOptions;
   const {id, title, type, price, rating, isPremium, photos} = offer;
-  const isFavoritesPage = page === AppRoute.FAVORITES;
 
   return (
     <article
-      className={`${isFavoritesPage ? `favorites__card` : `cities__place-card`} place-card`}
+      className={`place-card ${cardClassName}`}
       onMouseEnter={() => {
         if (onHover) {
           onHover(offer);
@@ -18,27 +17,27 @@ const OfferCard = (props) => {
       }}
     >
       {
-        !isFavoritesPage && isPremium &&
-          <div className="place-card__mark">
-            <span>Premium</span>
-          </div>
+        !isHiddenPremiumMark && isPremium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
       }
-      <div className={`${isFavoritesPage ? `favorites__image-wrapper` : `cities__image-wrapper`} place-card__image-wrapper`}>
+      <div className={`place-card__image-wrapper ${imageWrapperClassName}`}>
         <a href="#">
-          <img className="place-card__image" src={photos[0]} width={`${isFavoritesPage ? `150` : `260`}`} height={`${isFavoritesPage ? `110` : `200`}`} alt="Place image"/>
+          <img className="place-card__image" src={photos[0]} width={imageParams.width} height={imageParams.height} alt="Place image"/>
         </a>
       </div>
-      <div className={`${isFavoritesPage ? `favorites__card-info` : ``} place-card__info`}>
+      <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${isFavoritesPage ? `place-card__bookmark-button--active` : ``} button`} type="button">
+          <button className="place-card__bookmark-button button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">{`${isFavoritesPage ? `In` : `To`} bookmarks`}</span>
+            <span className="visually-hidden">{`${bookmarkPrefix} bookmarks`}</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -56,10 +55,10 @@ const OfferCard = (props) => {
   );
 };
 
-OfferCard.propTypes = {
+Card.propTypes = {
+  cardOptions: PropTypes.object,
   offer: PropTypes.object.isRequired,
-  page: PropTypes.string,
   onHover: PropTypes.func
 };
 
-export default OfferCard;
+export default Card;

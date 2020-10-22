@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import OfferCard from '../offer-card/offer-card';
+import Card from '../card/card';
+import {mainCardOptions} from '../../const';
 
 class OffersList extends PureComponent {
   constructor(props) {
@@ -22,15 +23,14 @@ class OffersList extends PureComponent {
     const {offers} = this.props;
 
     return (
-      <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => {
-          return <OfferCard
-            offer={offer}
-            onHover={this.handleOfferCardHover}
-            key={offer.id}
-          />;
-        })}
-      </div>
+      offers.map((offer) => {
+        return <Card
+          cardOptions={mainCardOptions}
+          offer={offer}
+          onHover={this.handleOfferCardHover}
+          key={offer.id}
+        />;
+      })
     );
   }
 }

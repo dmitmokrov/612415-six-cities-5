@@ -95,7 +95,9 @@ const MainPage = (props) => {
                 </select> */}
               </form>
 
-              <OffersList offers={offers}/>
+              <div className="cities__places-list places__list tabs__content">
+                <OffersList offers={offers}/>
+              </div>
 
             </section>
             <div className="cities__right-section">
