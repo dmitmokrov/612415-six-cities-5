@@ -18,14 +18,6 @@ const reducer = (state = initialState, action) => {
           }
       );
 
-    case ActionType.GET_OFFERS:
-      return extend(
-          state,
-          {
-            offers: offers.filter((offer) => offer.city === state.city)
-          }
-      );
-
     default:
       return state;
   }
