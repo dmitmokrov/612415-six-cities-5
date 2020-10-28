@@ -1,10 +1,10 @@
 import {ActionType} from './action';
 import {offers} from '../mocks/offers';
-import {City} from '../const';
+import {cities} from '../const';
 import {extend} from '../utils';
 
 const initialState = {
-  city: City.AMSTERDAM,
+  city: cities[0],
   offers
 };
 

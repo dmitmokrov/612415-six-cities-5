@@ -8,7 +8,6 @@ import {getOffersInCity} from '../../../utils';
 
 const MainPage = (props) => {
   const {city, offers} = props;
-  const cityOffers = getOffersInCity(offers, city);
 
   return (
     <div className="page page--gray page--main">
@@ -48,7 +47,7 @@ const MainPage = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cityOffers.length} places to stay in {city}</b>
+              <b className="places__found">{offers.length} places to stay in {city}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -66,13 +65,13 @@ const MainPage = (props) => {
               </form>
 
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={cityOffers}/>
+                <OffersList offers={offers}/>
               </div>
 
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={cityOffers}/>
+                <Map offers={offers}/>
               </section>
             </div>
           </div>
@@ -89,7 +88,7 @@ MainPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   city: state.city,
-  offers: state.offers
+  offers: getOffersInCity(state.offers, state.city)
 });
 
 export {MainPage};
