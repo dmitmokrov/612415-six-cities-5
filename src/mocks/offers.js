@@ -62,7 +62,7 @@ export const offers = [
       avatar: `https://www.fillmurray.com/110/110`,
       isSuper: true
     },
-    coords: [52.3909553943508, 4.929309666406198]
+    coords: [53.575322344345, 10.0156755]
   },
   {
     id: 4,
@@ -83,6 +83,6 @@ export const offers = [
       avatar: `https://www.fillmurray.com/120/120`,
       isSuper: true
     },
-    coords: [52.3809553943508, 4.939309666406198]
+    coords: [48.85341345465, 2.34234468789]
   }
 ];

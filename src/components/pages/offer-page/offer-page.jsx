@@ -7,8 +7,7 @@ import ReviewsList from '../../reviews-list/reviews-list';
 import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
-import {nearCardOptions} from '../../../const';
-// import NearPlacesList from '../../near-places-list/near-places-list';
+import {CardTypeOptions} from '../../../const';
 
 const OfferPage = (props) => {
   const {offers, reviews} = props;
@@ -112,7 +111,7 @@ const OfferPage = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <CardsList cardOptions={nearCardOptions} offers={offers.slice(0, 3)}/>
+              <CardsList cardOptions={CardTypeOptions.NEAR} offers={offers.slice(0, 3)}/>
             </div>
           </section>
         </div>
