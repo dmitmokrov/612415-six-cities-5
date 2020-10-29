@@ -29,7 +29,7 @@ export const offers = [
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: OfferType.PRIVATE_ROOM,
     price: 80,
-    rating: 4,
+    rating: 3,
     isPremium: false,
     isFavorite: true,
     bedroomsCount: 1,
