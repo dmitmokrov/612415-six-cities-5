@@ -11,11 +11,16 @@ class Map extends PureComponent {
   }
 
   _renderMap() {
-    const {city, offers} = this.props;
+    const {city, offers, activeCardId} = this.props;
     const center = CityCoords[city.toUpperCase()];
+    const iconSize = [30, 30];
     const icon = leaflet.icon({
       iconUrl: `./img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize
+    });
+    const activeIcon = leaflet.icon({
+      iconUrl: `./img/pin-active.svg`,
+      iconSize
     });
     const zoom = 12;
     const map = leaflet.map(`map`, {
@@ -33,9 +38,15 @@ class Map extends PureComponent {
       .addTo(map);
 
     offers.forEach((offer) => {
-      leaflet
+      if (offer.id === activeCardId) {
+        leaflet
+        .marker(offer.coords, {icon: activeIcon})
+        .addTo(map);
+      } else {
+        leaflet
         .marker(offer.coords, {icon})
         .addTo(map);
+      }
     });
 
     this._map = map;
@@ -59,7 +70,8 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   city: PropTypes.string,
-  offers: PropTypes.array
+  offers: PropTypes.array,
+  activeCardId: PropTypes.number
 };
 
 export default Map;

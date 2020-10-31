@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {getOffersInCity, getOffersBySortType} from '../../../utils';
 
 const MainPage = (props) => {
-  const {city, offers, sortType} = props;
+  const {city, offers, sortType, activeCardId} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -67,7 +67,7 @@ const MainPage = (props) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={city} offers={offers}/>
+                <Map city={city} offers={offers} activeCardId={activeCardId}/>
               </section>
             </div>
           </div>
@@ -80,13 +80,15 @@ const MainPage = (props) => {
 MainPage.propTypes = {
   city: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
-  sortType: PropTypes.string.isRequired
+  sortType: PropTypes.string.isRequired,
+  activeCardId: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
   offers: getOffersBySortType(getOffersInCity(state.offers, state.city), state.sortType),
-  sortType: state.sortType
+  sortType: state.sortType,
+  activeCardId: state.activeCardId
 });
 
 export {MainPage};
