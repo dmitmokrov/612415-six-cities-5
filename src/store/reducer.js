@@ -6,7 +6,8 @@ import {extend} from '../utils';
 const initialState = {
   city: cities[0],
   offers,
-  sortType: sortTypes[0]
+  sortType: sortTypes[0],
+  activeCardId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +25,22 @@ const reducer = (state = initialState, action) => {
           state,
           {
             sortType: action.payload
+          }
+      );
+
+    case ActionType.CHANGE_ACTIVE_CARD:
+      return extend(
+          state,
+          {
+            activeCardId: action.payload
+          }
+      );
+
+    case ActionType.RESET_ACTIVE_CARD:
+      return extend(
+          state,
+          {
+            activeCardId: null
           }
       );
 
