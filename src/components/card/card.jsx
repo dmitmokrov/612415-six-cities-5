@@ -1,10 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {CardTypeOptions} from '../../const';
+import {ActionCreator} from '../../store/action';
 
 const Card = (props) => {
-  const {cardOptions, offer, onHover} = props;
+  const {cardOptions, offer, changeActiveCard, resetActiveCard} = props;
   const {cardClassName, isHiddenPremiumMark, imageWrapperClassName, imageParams, bookmarkPrefix} = cardOptions;
   const {id, title, type, price, rating, isPremium, photos} = offer;
 
@@ -12,9 +14,10 @@ const Card = (props) => {
     <article
       className={`place-card ${cardClassName}`}
       onMouseEnter={() => {
-        if (onHover) {
-          onHover(offer);
-        }
+        changeActiveCard(offer.id);
+      }}
+      onMouseLeave={() => {
+        resetActiveCard();
       }}
     >
       {
@@ -60,10 +63,21 @@ Card.defaultProps = {
   cardOptions: CardTypeOptions.DEFAULT
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  changeActiveCard(id) {
+    dispatch(ActionCreator.changeActiveCard(id));
+  },
+  resetActiveCard() {
+    dispatch(ActionCreator.resetActiveCard());
+  }
+});
+
 Card.propTypes = {
   cardOptions: PropTypes.object,
   offer: PropTypes.object.isRequired,
-  onHover: PropTypes.func
+  changeActiveCard: PropTypes.func,
+  resetActiveCard: PropTypes.func
 };
 
-export default Card;
+export {Card};
+export default connect(null, mapDispatchToProps)(Card);
