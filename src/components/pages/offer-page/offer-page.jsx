@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../../header/header';
 import PhotosList from '../../photos-list/photos-list';
@@ -10,10 +11,10 @@ import CardsList from '../../cards-list/cards-list';
 import {CardTypeOptions} from '../../../const';
 
 const OfferPage = (props) => {
-  const {offers, reviews} = props;
+  const {offers, activeCardId, reviews} = props;
   const offer = offers.find((elem) => elem.id.toString() === props.match.params.id);
   const review = reviews.find((elem) => elem.id.toString() === props.match.params.id);
-  const {title, description, type, price, rating, isPremium, bedroomsCount, guestsMaxCount, features, photos, host} = offer;
+  const {city, title, description, type, price, rating, isPremium, bedroomsCount, guestsMaxCount, features, photos, host} = offer;
   return (
     <div className="page">
       <Header/>
@@ -104,7 +105,7 @@ const OfferPage = (props) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={offers.slice(0, 3)}/>
+            <Map city={city} offers={offers.slice(0, 3)} activeCardId={activeCardId}/>
           </section>
         </section>
         <div className="container">
@@ -120,10 +121,18 @@ const OfferPage = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  city: state.city,
+  offers: state.offers,
+  activeCardId: state.activeCardId
+});
+
 OfferPage.propTypes = {
+  city: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
+  activeCardId: PropTypes.number,
   reviews: PropTypes.array.isRequired,
   match: PropTypes.object.isRequired
 };
 
-export default OfferPage;
+export default connect(mapStateToProps)(OfferPage);

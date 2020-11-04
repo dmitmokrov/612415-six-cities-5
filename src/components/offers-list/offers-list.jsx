@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Card from '../card/card';
 
 const OffersList = (props) => {
-
   const {offers} = props;
 
   return (
