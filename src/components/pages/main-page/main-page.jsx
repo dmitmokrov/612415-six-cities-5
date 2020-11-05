@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OffersList from '../../offers-list/offers-list';
 import CitiesList from '../../cities-list/cities-list';
-import SortingList from '../../sorting-list/sorting-list';
 import Map from '../../map/map';
+import NoPlaces from '../../no-places/no-places';
+import Places from '../../places/places';
 import {connect} from 'react-redux';
 import {getOffersInCity, getOffersBySortType} from '../../../utils';
 
@@ -35,7 +35,7 @@ const MainPage = (props) => {
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${!offers.length && `page__main--index-empty`}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -45,30 +45,18 @@ const MainPage = (props) => {
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {city}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  {sortType}
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <SortingList/>
-              </form>
+          <div className={`cities__places-container ${!offers.length && `cities__places-container--empty`} container`}>
+            {
+              offers.length === 0 ? <NoPlaces/> : <Places offers={offers} city={city} sortType={sortType}/>
+            }
 
-              <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers}/>
-              </div>
-
-            </section>
             <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map city={city} offers={offers} activeCardId={activeCardId}/>
-              </section>
+              {
+                offers.length &&
+                <section className="cities__map map">
+                  <Map city={city} offers={offers} activeCardId={activeCardId}/>
+                </section>
+              }
             </div>
           </div>
         </div>
