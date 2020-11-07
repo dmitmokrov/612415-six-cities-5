@@ -8,7 +8,7 @@ import {ActionCreator} from '../../store/action';
 const Card = (props) => {
   const {cardOptions, offer, changeActiveCard, resetActiveCard} = props;
   const {cardClassName, isHiddenPremiumMark, imageWrapperClassName, imageParams, bookmarkPrefix} = cardOptions;
-  const {id, title, type, price, rating, isPremium, photos} = offer;
+  const {id, title, type, price, rating, isPremium, previewImage} = offer;
 
   return (
     <article
@@ -28,7 +28,7 @@ const Card = (props) => {
       }
       <div className={`place-card__image-wrapper ${imageWrapperClassName}`}>
         <a href="#">
-          <img className="place-card__image" src={photos[0]} width={imageParams.width} height={imageParams.height} alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width={imageParams.width} height={imageParams.height} alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">

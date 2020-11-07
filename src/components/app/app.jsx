@@ -13,11 +13,11 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.HOME} exact>
-          <MainPage offers={offers}/>
+          <MainPage/>
         </Route>
         <Route path={AppRoute.LOGIN} component={LoginPage} exact/>
         <Route path={AppRoute.FAVORITES} exact>
-          <FavoritesPage offers={offers.filter((offer) => offer.isFavorite)}/>
+          <FavoritesPage/>
         </Route>
         <Route path={AppRoute.OFFER} exact
           render={(prop) => <OfferPage {...prop} offers={offers} reviews={reviews}/>}

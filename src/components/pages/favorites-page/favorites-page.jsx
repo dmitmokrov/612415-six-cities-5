@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import Header from '../../header/header';
 import FavoritesCities from '../../favorites-cities/favorites-cities';
 import {AppRoute} from '../../../const';
@@ -35,4 +36,9 @@ FavoritesPage.propTypes = {
   offers: PropTypes.array.isRequired
 };
 
-export default FavoritesPage;
+const mapStateToProps = (state) => ({
+  offers: state.offers.filter((offer) => offer.isFavorite)
+});
+
+export {FavoritesPage};
+export default connect(mapStateToProps)(FavoritesPage);

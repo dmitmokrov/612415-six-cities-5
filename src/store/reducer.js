@@ -1,11 +1,11 @@
 import {ActionType} from './action';
-import {offers} from '../mocks/offers';
+// import {offers} from '../mocks/offers';
 import {cities, sortTypes} from '../const';
-import {extend} from '../utils';
+import {extend, adaptToClient} from '../utils';
 
 const initialState = {
   city: cities[0],
-  offers,
+  offers: [],
   sortType: sortTypes[0],
   activeCardId: null
 };
@@ -41,6 +41,14 @@ const reducer = (state = initialState, action) => {
           state,
           {
             activeCardId: null
+          }
+      );
+
+    case ActionType.LOAD_OFFERS:
+      return extend(
+          state,
+          {
+            offers: action.payload.map((offer) => adaptToClient(offer))
           }
       );
 
