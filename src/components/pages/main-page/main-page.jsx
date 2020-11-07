@@ -6,6 +6,7 @@ import NoPlaces from '../../no-places/no-places';
 import Places from '../../places/places';
 import {connect} from 'react-redux';
 import {getOffersInCity, getOffersBySortType} from '../../../utils';
+import {getOffers, getCity, getSortType, getActiveCardId} from '../../../store/selectors';
 
 const MainPage = (props) => {
   const {city, offers, sortType, activeCardId} = props;
@@ -72,11 +73,11 @@ MainPage.propTypes = {
   activeCardId: PropTypes.number
 };
 
-const mapStateToProps = ({DATA, PROCESS}) => ({
-  city: PROCESS.city,
-  offers: getOffersBySortType(getOffersInCity(DATA.offers, PROCESS.city), PROCESS.sortType),
-  sortType: PROCESS.sortType,
-  activeCardId: PROCESS.activeCardId
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  offers: getOffersBySortType(getOffersInCity(getOffers(state), getCity(state)), getSortType(state)),
+  sortType: getSortType(state),
+  activeCardId: getActiveCardId(state)
 });
 
 export {MainPage};

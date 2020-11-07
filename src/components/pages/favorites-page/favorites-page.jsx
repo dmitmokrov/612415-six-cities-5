@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Header from '../../header/header';
 import FavoritesCities from '../../favorites-cities/favorites-cities';
 import {AppRoute} from '../../../const';
+import {getFavoriteOffers} from '../../../store/selectors';
 
 const FavoritesPage = (props) => {
   const {offers} = props;
@@ -36,8 +37,8 @@ FavoritesPage.propTypes = {
   offers: PropTypes.array.isRequired
 };
 
-const mapStateToProps = ({DATA}) => ({
-  offers: DATA.offers.filter((offer) => offer.isFavorite)
+const mapStateToProps = (state) => ({
+  offers: getFavoriteOffers(state)
 });
 
 export {FavoritesPage};

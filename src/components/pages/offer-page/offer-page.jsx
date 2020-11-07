@@ -9,6 +9,7 @@ import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
 import {CardTypeOptions} from '../../../const';
+import {getCity, getOffers, getActiveCardId} from '../../../store/selectors';
 
 const OfferPage = (props) => {
   const {offers, activeCardId, reviews} = props;
@@ -50,7 +51,7 @@ const OfferPage = (props) => {
                   <span style={{width: `${rating * 20}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
@@ -121,10 +122,10 @@ const OfferPage = (props) => {
   );
 };
 
-const mapStateToProps = ({DATA, PROCESS}) => ({
-  city: PROCESS.city,
-  offers: DATA.offers,
-  activeCardId: PROCESS.activeCardId
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  offers: getOffers(state),
+  activeCardId: getActiveCardId(state)
 });
 
 OfferPage.propTypes = {
