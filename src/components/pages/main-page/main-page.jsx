@@ -5,8 +5,8 @@ import Map from '../../map/map';
 import NoPlaces from '../../no-places/no-places';
 import Places from '../../places/places';
 import {connect} from 'react-redux';
-import {getOffersInCity, getOffersBySortType} from '../../../utils';
-import {getOffers, getCity, getSortType, getActiveCardId} from '../../../store/selectors';
+// import {getOffersBySortType} from '../../../utils';
+import {getCity, getSortType, getOffersInCityBySortType, getActiveCardId} from '../../../store/selectors';
 
 const MainPage = (props) => {
   const {city, offers, sortType, activeCardId} = props;
@@ -75,7 +75,7 @@ MainPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  offers: getOffersBySortType(getOffersInCity(getOffers(state), getCity(state)), getSortType(state)),
+  offers: getOffersInCityBySortType(state),
   sortType: getSortType(state),
   activeCardId: getActiveCardId(state)
 });
