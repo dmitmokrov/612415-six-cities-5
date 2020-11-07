@@ -121,10 +121,10 @@ const OfferPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: state.offers,
-  activeCardId: state.activeCardId
+const mapStateToProps = ({DATA, PROCESS}) => ({
+  city: PROCESS.city,
+  offers: DATA.offers,
+  activeCardId: PROCESS.activeCardId
 });
 
 OfferPage.propTypes = {

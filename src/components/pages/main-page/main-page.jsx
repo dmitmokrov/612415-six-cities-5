@@ -72,11 +72,11 @@ MainPage.propTypes = {
   activeCardId: PropTypes.number
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: getOffersBySortType(getOffersInCity(state.offers, state.city), state.sortType),
-  sortType: state.sortType,
-  activeCardId: state.activeCardId
+const mapStateToProps = ({DATA, PROCESS}) => ({
+  city: PROCESS.city,
+  offers: getOffersBySortType(getOffersInCity(DATA.offers, PROCESS.city), PROCESS.sortType),
+  sortType: PROCESS.sortType,
+  activeCardId: PROCESS.activeCardId
 });
 
 export {MainPage};

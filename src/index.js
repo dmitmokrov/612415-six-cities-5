@@ -6,15 +6,14 @@ import {Provider} from 'react-redux';
 import App from './components/app/app';
 import {offers} from './mocks/offers';
 import {reviews} from './mocks/reviews';
-import {reducer} from './store/reducer';
+import rootReducer from './store/reducers/root-reducer';
 import thunk from 'redux-thunk';
 import {createApi} from './services/api';
-// import {ActionType} from './store/action';
 import {fetchOffers} from './store/api-actions';
 
 const api = createApi();
 
-const store = createStore(reducer, composeWithDevTools(
+const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)))
 );
 

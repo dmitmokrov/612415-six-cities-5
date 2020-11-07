@@ -36,8 +36,8 @@ FavoritesPage.propTypes = {
   offers: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers.filter((offer) => offer.isFavorite)
+const mapStateToProps = ({DATA}) => ({
+  offers: DATA.offers.filter((offer) => offer.isFavorite)
 });
 
 export {FavoritesPage};
