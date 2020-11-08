@@ -6,6 +6,7 @@ import LoginPage from '../pages/login-page/login-page';
 import FavoritesPage from '../pages/favorites-page/favorites-page';
 import OfferPage from '../pages/offer-page/offer-page';
 import {AppRoute} from '../../const';
+import PrivateRoute from '../private-route/private-route';
 
 const App = (props) => {
   const {offers, reviews} = props;
@@ -16,9 +17,11 @@ const App = (props) => {
           <MainPage/>
         </Route>
         <Route path={AppRoute.LOGIN} component={LoginPage} exact/>
-        <Route path={AppRoute.FAVORITES} exact>
-          <FavoritesPage/>
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVORITES}
+          render={() => <FavoritesPage/>}
+        />
         <Route path={AppRoute.OFFER} exact
           render={(prop) => <OfferPage {...prop} offers={offers} reviews={reviews}/>}
         />
