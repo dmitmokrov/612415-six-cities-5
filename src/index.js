@@ -9,25 +9,43 @@ import {reviews} from './mocks/reviews';
 import rootReducer from './store/reducers/root-reducer';
 import thunk from 'redux-thunk';
 import {createApi} from './services/api';
-import {fetchOffers} from './store/api-actions';
+import {fetchOffers, checkAuth} from './store/api-actions';
+import {ActionCreator} from './store/action';
+import {AuthorizationStatus} from './const';
 
-const api = createApi();
+const api = createApi(
+    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
+);
 
 const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)))
 );
 
-Promise.all([
-  store.dispatch(fetchOffers())
-])
-  .then(() => {
-    ReactDOM.render(
-        <Provider store={store}>
-          <App
-            offers={offers}
-            reviews={reviews}
-          />
-        </Provider>,
-        document.querySelector(`#root`)
-    );
-  });
+// Promise.all([
+//   store.dispatch(fetchOffers()),
+//   store.dispatch(checkAuth())
+// ])
+//   .then(() => {
+//     ReactDOM.render(
+//         <Provider store={store}>
+//           <App
+//             offers={offers}
+//             reviews={reviews}
+//           />
+//         </Provider>,
+//         document.querySelector(`#root`)
+//     );
+//   });
+
+store.dispatch(fetchOffers());
+store.dispatch(checkAuth());
+
+ReactDOM.render(
+    <Provider store={store}>
+      <App
+        offers={offers}
+        reviews={reviews}
+      />
+    </Provider>,
+    document.querySelector(`#root`)
+);
