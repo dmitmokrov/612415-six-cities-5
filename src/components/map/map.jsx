@@ -23,13 +23,14 @@ class Map extends PureComponent {
     });
 
     offers.forEach((offer) => {
+      const coords = [offer.location.latitude, offer.location.longitude];
       if (offer.id === activeCardId) {
         leaflet
-        .marker(offer.coords, {icon: activeIcon})
+        .marker(coords, {icon: activeIcon})
         .addTo(this._map);
       } else {
         leaflet
-        .marker(offer.coords, {icon})
+        .marker(coords, {icon})
         .addTo(this._map);
       }
     });

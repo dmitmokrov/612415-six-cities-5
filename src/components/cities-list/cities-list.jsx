@@ -19,8 +19,8 @@ const CitiesList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city
+const mapStateToProps = ({PROCESS}) => ({
+  city: PROCESS.city
 });
 
 const mapDispatchToProps = (dispatch) => ({

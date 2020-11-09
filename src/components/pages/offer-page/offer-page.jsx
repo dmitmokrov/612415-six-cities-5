@@ -9,12 +9,13 @@ import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
 import {CardTypeOptions} from '../../../const';
+import {getCity, getOffers, getActiveCardId} from '../../../store/selectors';
 
 const OfferPage = (props) => {
   const {offers, activeCardId, reviews} = props;
   const offer = offers.find((elem) => elem.id.toString() === props.match.params.id);
   const review = reviews.find((elem) => elem.id.toString() === props.match.params.id);
-  const {city, title, description, type, price, rating, isPremium, bedroomsCount, guestsMaxCount, features, photos, host} = offer;
+  const {city, title, description, type, price, rating, isPremium, bedrooms, guestsMaxCount, goods, images, host} = offer;
   return (
     <div className="page">
       <Header/>
@@ -23,7 +24,7 @@ const OfferPage = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <PhotosList photos={photos}/>
+              <PhotosList photos={images}/>
             </div>
           </div>
           <div className="property__container container">
@@ -50,14 +51,14 @@ const OfferPage = (props) => {
                   <span style={{width: `${rating * 20}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedroomsCount} Bedrooms
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
                   Max {guestsMaxCount} adults
@@ -70,7 +71,7 @@ const OfferPage = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <FeaturesList features={features}/>
+                  <FeaturesList features={goods}/>
                 </ul>
               </div>
               <div className="property__host">
@@ -105,7 +106,7 @@ const OfferPage = (props) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map city={city} offers={offers.slice(0, 3)} activeCardId={activeCardId}/>
+            <Map city={city.name} offers={offers.slice(0, 3)} activeCardId={activeCardId}/>
           </section>
         </section>
         <div className="container">
@@ -122,9 +123,9 @@ const OfferPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: state.offers,
-  activeCardId: state.activeCardId
+  city: getCity(state),
+  offers: getOffers(state),
+  activeCardId: getActiveCardId(state)
 });
 
 OfferPage.propTypes = {
