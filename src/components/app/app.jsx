@@ -32,25 +32,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.string,
-        type: PropTypes.oneOf([`Apartment`, `Private room`, `House`, `Hotel`]),
-        price: PropTypes.number,
-        rating: PropTypes.number,
-        isPremium: PropTypes.bool,
-        bedroomsCount: PropTypes.number,
-        guestsMaxCount: PropTypes.number,
-        features: PropTypes.arrayOf(PropTypes.string),
-        photos: PropTypes.arrayOf(PropTypes.string),
-        host: PropTypes.shape({
-          name: PropTypes.string,
-          avatar: PropTypes.string,
-          isSuper: PropTypes.bool
-        })
-      })
-  ).isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
