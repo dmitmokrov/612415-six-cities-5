@@ -11,14 +11,16 @@ import {createApi} from './services/api';
 import {fetchOffers, checkAuth} from './store/api-actions';
 import {ActionCreator} from './store/action';
 import {AuthorizationStatus} from './const';
+import {redirect} from './store/redirect';
 
 const api = createApi(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
 );
 
 const store = createStore(rootReducer, composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api)))
-);
+    applyMiddleware(thunk.withExtraArgument(api)),
+    applyMiddleware(redirect)
+));
 
 store.dispatch(fetchOffers());
 store.dispatch(checkAuth());

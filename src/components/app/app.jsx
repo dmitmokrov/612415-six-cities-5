@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import {Router as BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MainPage from '../pages/main-page/main-page';
 import LoginPage from '../pages/login-page/login-page';
@@ -7,11 +7,12 @@ import FavoritesPage from '../pages/favorites-page/favorites-page';
 import OfferPage from '../pages/offer-page/offer-page';
 import {AppRoute} from '../../const';
 import PrivateRoute from '../private-route/private-route';
+import browserHistory from '../../browser-history';
 
 const App = (props) => {
   const {reviews} = props;
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route path={AppRoute.HOME} exact>
           <MainPage/>
