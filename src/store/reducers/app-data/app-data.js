@@ -11,7 +11,7 @@ const appData = (state = initialState, action) => {
       return extend(
           state,
           {
-            offers: action.payload.map((offer) => adaptToClient(offer))
+            offers: action.payload.map(adaptToClient)
           }
       );
   }

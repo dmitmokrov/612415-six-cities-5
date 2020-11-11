@@ -9,7 +9,7 @@ import {AppRoute} from '../../const';
 import PrivateRoute from '../private-route/private-route';
 
 const App = (props) => {
-  const {offers, reviews} = props;
+  const {reviews} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -23,7 +23,7 @@ const App = (props) => {
           render={() => <FavoritesPage/>}
         />
         <Route path={AppRoute.OFFER} exact
-          render={(prop) => <OfferPage {...prop} offers={offers} reviews={reviews}/>}
+          render={(prop) => <OfferPage {...prop} reviews={reviews}/>}
         />
         <Redirect to={AppRoute.HOME}/>
       </Switch>

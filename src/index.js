@@ -21,22 +21,6 @@ const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)))
 );
 
-// Promise.all([
-//   store.dispatch(fetchOffers()),
-//   store.dispatch(checkAuth())
-// ])
-//   .then(() => {
-//     ReactDOM.render(
-//         <Provider store={store}>
-//           <App
-//             offers={offers}
-//             reviews={reviews}
-//           />
-//         </Provider>,
-//         document.querySelector(`#root`)
-//     );
-//   });
-
 store.dispatch(fetchOffers());
 store.dispatch(checkAuth());
 
