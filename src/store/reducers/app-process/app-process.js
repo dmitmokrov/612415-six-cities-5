@@ -1,6 +1,6 @@
 import {ActionType} from '../../action';
 import {cities, sortTypes} from '../../../const';
-import {extend, adaptToClient} from '../../../utils';
+import {extend} from '../../../utils';
 
 const initialState = {
   city: cities[0],
@@ -39,14 +39,6 @@ const appProcess = (state = initialState, action) => {
           state,
           {
             activeCardId: null
-          }
-      );
-
-    case ActionType.LOAD_OFFERS:
-      return extend(
-          state,
-          {
-            offers: action.payload.map((offer) => adaptToClient(offer))
           }
       );
   }
