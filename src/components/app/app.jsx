@@ -17,10 +17,18 @@ const App = (props) => {
         <Route path={AppRoute.HOME} exact>
           <MainPage/>
         </Route>
-        <Route path={AppRoute.LOGIN} component={LoginPage} exact/>
+        <PrivateRoute
+          exact
+          path={AppRoute.LOGIN}
+          isAuthRequired={false}
+          redirectRoute={AppRoute.HOME}
+          render={() => <LoginPage/>}
+        />
         <PrivateRoute
           exact
           path={AppRoute.FAVORITES}
+          isAuthRequired={true}
+          redirectRoute={AppRoute.LOGIN}
           render={() => <FavoritesPage/>}
         />
         <Route path={AppRoute.OFFER} exact
