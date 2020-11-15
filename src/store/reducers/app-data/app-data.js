@@ -3,6 +3,8 @@ import {extend, adaptToClient} from '../../../utils';
 
 const initialState = {
   offers: [],
+  offer: null,
+  nearbyOffers: []
 };
 
 const appData = (state = initialState, action) => {
@@ -12,6 +14,22 @@ const appData = (state = initialState, action) => {
           state,
           {
             offers: action.payload.map(adaptToClient)
+          }
+      );
+
+    case ActionType.LOAD_OFFER:
+      return extend(
+          state,
+          {
+            offer: adaptToClient(action.payload)
+          }
+      );
+
+    case ActionType.LOAD_NEARBY_OFFERS:
+      return extend(
+          state,
+          {
+            nearbyOffers: action.payload.map(adaptToClient)
           }
       );
   }

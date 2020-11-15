@@ -7,6 +7,16 @@ export const fetchOffers = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(ActionCreator.loadOffers(data)))
 );
 
+export const fetchOffer = (id) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${id}`)
+    .then(({data}) => dispatch(ActionCreator.loadOffer(data)))
+);
+
+export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${id}/nearby`)
+    .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(data)))
+);
+
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
