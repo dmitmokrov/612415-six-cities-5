@@ -9,20 +9,20 @@ import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
 import {CardTypeOptions} from '../../../const';
-import {getCity, getOffer, getNearbyOffers} from '../../../store/selectors';
-import {fetchOffer, fetchNearbyOffers} from '../../../store/api-actions';
+import {getCity, getOffer, getNearbyOffers, getComments} from '../../../store/selectors';
+import {fetchOffer, fetchNearbyOffers, fetchComments} from '../../../store/api-actions';
 
 class OfferPage extends Component {
   componentDidMount() {
-    const {loadOffer, loadNearbyOffers} = this.props;
+    const {loadOffer, loadNearbyOffers, loadComments} = this.props;
     const id = this.props.match.params.id;
     loadOffer(id);
     loadNearbyOffers(id);
+    loadComments(id);
   }
 
   render() {
-    const {reviews, offer, nearbyOffers, nearbyOffersForMap} = this.props;
-    const review = reviews.find((elem) => elem.id.toString() === this.props.match.params.id);
+    const {offer, nearbyOffers, nearbyOffersForMap, comments} = this.props;
 
     if (offer) {
       const {id, city, title, description, type, price, rating, isPremium, bedrooms, guestsMaxCount, goods, images, host} = offer;
@@ -102,11 +102,11 @@ class OfferPage extends Component {
                     </div>
                   </div>
                   <section className="property__reviews reviews">
-                    {review &&
+                    {comments.length &&
                       <Fragment>
-                        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{review.comments.length}</span></h2>
+                        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
                         <ul className="reviews__list">
-                          <ReviewsList reviews={review.comments}/>
+                          <ReviewsList comments={comments}/>
                         </ul>
                       </Fragment>
                     }
@@ -141,7 +141,8 @@ const mapStateToProps = (state) => ({
   city: getCity(state),
   offer: getOffer(state),
   nearbyOffers: getNearbyOffers(state),
-  nearbyOffersForMap: [...getNearbyOffers(state), getOffer(state)]
+  nearbyOffersForMap: [...getNearbyOffers(state), getOffer(state)],
+  comments: getComments(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -150,6 +151,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadNearbyOffers(id) {
     dispatch(fetchNearbyOffers(id));
+  },
+  loadComments(id) {
+    dispatch(fetchComments(id));
   }
 });
 
@@ -176,12 +180,14 @@ OfferPage.propTypes = {
   }),
   nearbyOffers: PropTypes.array,
   nearbyOffersForMap: PropTypes.array,
+  comments: PropTypes.array,
   city: PropTypes.string.isRequired,
   activeCardId: PropTypes.number,
-  reviews: PropTypes.array.isRequired,
+  reviews: PropTypes.array,
   match: PropTypes.object.isRequired,
   loadOffer: PropTypes.func.isRequired,
-  loadNearbyOffers: PropTypes.func.isRequired
+  loadNearbyOffers: PropTypes.func.isRequired,
+  loadComments: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OfferPage);

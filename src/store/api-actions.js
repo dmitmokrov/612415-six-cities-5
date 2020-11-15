@@ -17,6 +17,11 @@ export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(data)))
 );
 
+export const fetchComments = (id) => (dispatch, _getState, api) => (
+  api.get(`/comments/${id}`)
+    .then(({data}) => dispatch(ActionCreator.loadComments(data)))
+);
+
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
