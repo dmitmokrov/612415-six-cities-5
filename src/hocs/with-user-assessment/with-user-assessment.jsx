@@ -9,6 +9,7 @@ const withUserAssessment = (Component) => {
         review: ``
       };
       this.handleFieldChange = this.handleFieldChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleFieldChange(evt) {
@@ -18,9 +19,21 @@ const withUserAssessment = (Component) => {
       });
     }
 
+    handleSubmit() {
+      this.setState({
+        rating: `0`,
+        review: ``
+      });
+    }
+
     render() {
       return (
-        <Component {...this.props} onChange={this.handleFieldChange}/>
+        <Component {...this.props}
+          comment={this.state.review}
+          rating={this.state.rating}
+          onChange={this.handleFieldChange}
+          clearForm={this.handleSubmit}
+        />
       );
     }
   }

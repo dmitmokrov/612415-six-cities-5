@@ -21,6 +21,12 @@ class OfferPage extends Component {
     loadComments(id);
   }
 
+  componentDidUpdate() {
+    const {loadComments} = this.props;
+    const id = this.props.match.params.id;
+    loadComments(id);
+  }
+
   render() {
     const {offer, nearbyOffers, nearbyOffersForMap, comments} = this.props;
 
@@ -111,7 +117,7 @@ class OfferPage extends Component {
                       </Fragment>
                     }
 
-                    <ReviewForm/>
+                    <ReviewForm id={id}/>
 
                   </section>
                 </div>
