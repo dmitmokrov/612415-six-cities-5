@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 
 const withUserAssessment = (Component) => {
   class WithUserAssessment extends PureComponent {
@@ -6,7 +7,8 @@ const withUserAssessment = (Component) => {
       super(props);
       this.state = {
         rating: `0`,
-        review: ``
+        review: ``,
+        isSubmitButtonDisabled: true
       };
       this.handleFieldChange = this.handleFieldChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,31 +16,43 @@ const withUserAssessment = (Component) => {
 
     handleFieldChange(evt) {
       const {name, value} = evt.target;
+      const isButtonDisabled = this.state.review.length < 50 || this.state.rating === `0`;
       this.setState({
-        [name]: value
+        [name]: value,
+        isSubmitButtonDisabled: isButtonDisabled
       });
     }
 
     handleSubmit(evt) {
+      const {id} = this.props;
+      const {review, rating} = this.state;
       evt.preventDefault();
-      this.props.onSubmitForm(this.props.id, {comment: this.state.review, rating: this.state.rating});
+      this.props.onSubmitForm(id, {comment: review, rating});
       this.setState({
         rating: `0`,
-        review: ``
+        review: ``,
+        isSubmitButtonDisabled: true
       });
     }
 
     render() {
+      const {review, rating, isSubmitButtonDisabled} = this.state;
       return (
         <Component {...this.props}
-          comment={this.state.review}
-          rating={this.state.rating}
+          comment={review}
+          rating={rating}
           onChange={this.handleFieldChange}
           onSubmit={this.handleSubmit}
+          isSubmitButtonDisabled={isSubmitButtonDisabled}
         />
       );
     }
   }
+
+  WithUserAssessment.propTypes = {
+    id: PropTypes.number,
+    onSubmitForm: PropTypes.func
+  };
 
   return WithUserAssessment;
 };
