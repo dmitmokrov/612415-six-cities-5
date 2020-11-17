@@ -2,8 +2,8 @@ import React, {PureComponent} from 'react';
 
 const withUserAssessment = (Component) => {
   class WithUserAssessment extends PureComponent {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         rating: `0`,
         review: ``
@@ -19,7 +19,9 @@ const withUserAssessment = (Component) => {
       });
     }
 
-    handleSubmit() {
+    handleSubmit(evt) {
+      evt.preventDefault();
+      this.props.onSubmitForm(this.props.id, {comment: this.state.review, rating: this.state.rating});
       this.setState({
         rating: `0`,
         review: ``
@@ -32,7 +34,7 @@ const withUserAssessment = (Component) => {
           comment={this.state.review}
           rating={this.state.rating}
           onChange={this.handleFieldChange}
-          clearForm={this.handleSubmit}
+          onSubmit={this.handleSubmit}
         />
       );
     }
