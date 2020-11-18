@@ -64,7 +64,7 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.city !== prevProps.city || this.props.activeCardId !== prevProps.activeCardId) {
+    if (this.props.city !== prevProps.city && this.props.activeCardId !== prevProps.activeCardId) {
       this._map.remove();
       this._renderMap();
     } else {
