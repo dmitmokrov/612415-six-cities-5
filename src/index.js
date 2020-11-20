@@ -22,18 +22,11 @@ const store = createStore(rootReducer, composeWithDevTools(
 ));
 
 store.dispatch(fetchOffers());
+store.dispatch(checkAuth());
 
-Promise.all(
-    [
-      store.dispatch(checkAuth())
-    ]
-)
-  .then(() => {
-    ReactDOM.render(
-        <Provider store={store}>
-          <App/>
-        </Provider>,
-        document.querySelector(`#root`)
-    );
-  })
-;
+ReactDOM.render(
+    <Provider store={store}>
+      <App/>
+    </Provider>,
+    document.querySelector(`#root`)
+);

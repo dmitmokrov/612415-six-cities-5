@@ -7,19 +7,23 @@ const withUserAssessment = (Component) => {
       super(props);
       this.state = {
         rating: `0`,
-        review: ``,
-        isSubmitButtonDisabled: true
+        review: ``
       };
       this.handleFieldChange = this.handleFieldChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    _resetForm() {
+      this.setState({
+        rating: `0`,
+        review: ``
+      });
+    }
+
     handleFieldChange(evt) {
       const {name, value} = evt.target;
-      const isButtonDisabled = this.state.review.length < 50 || this.state.rating === `0`;
       this.setState({
-        [name]: value,
-        isSubmitButtonDisabled: isButtonDisabled
+        [name]: value
       });
     }
 
@@ -28,22 +32,20 @@ const withUserAssessment = (Component) => {
       const {review, rating} = this.state;
       evt.preventDefault();
       this.props.onSubmitForm(id, {comment: review, rating});
-      this.setState({
-        rating: `0`,
-        review: ``,
-        isSubmitButtonDisabled: true
-      });
+      this._resetForm();
     }
 
     render() {
-      const {review, rating, isSubmitButtonDisabled} = this.state;
+      const {review, rating} = this.state;
+      const isButtonDisabled = this.state.review.length < 50 || this.state.rating === `0`;
+
       return (
         <Component {...this.props}
           comment={review}
           rating={rating}
           onChange={this.handleFieldChange}
           onSubmit={this.handleSubmit}
-          isSubmitButtonDisabled={isSubmitButtonDisabled}
+          isSubmitButtonDisabled={isButtonDisabled}
         />
       );
     }

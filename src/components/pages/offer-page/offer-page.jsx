@@ -22,17 +22,13 @@ class OfferPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {comments, loadOffer, loadComments, loadNearbyOffers} = this.props;
+    const {loadOffer, loadComments, loadNearbyOffers} = this.props;
     const id = this.props.match.params.id;
 
     if (prevProps.match.params.id !== id) {
       loadComments(id);
       loadOffer(id);
       loadNearbyOffers(id);
-    }
-
-    if (prevProps.comments !== comments) {
-      loadComments(id);
     }
   }
 

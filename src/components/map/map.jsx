@@ -10,7 +10,7 @@ class Map extends PureComponent {
     this._map = null;
   }
 
-  _renderMarkers() {
+  _renderMarkers(withLayer = false) {
     const {offers, activeCardId} = this.props;
     const iconSize = [30, 30];
     const icon = leaflet.icon({
@@ -21,6 +21,18 @@ class Map extends PureComponent {
       iconUrl: `./img/pin-active.svg`,
       iconSize
     });
+
+    if (withLayer) {
+      this._map.eachLayer((layer) => {
+        this._map.removeLayer(layer);
+      });
+
+      leaflet
+        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        })
+        .addTo(this._map);
+    }
 
     offers.forEach((offer) => {
       const coords = [offer.location.latitude, offer.location.longitude];
@@ -64,11 +76,11 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.city !== prevProps.city && this.props.activeCardId !== prevProps.activeCardId) {
+    if (this.props.city !== prevProps.city || this.props.activeCardId !== prevProps.activeCardId) {
       this._map.remove();
       this._renderMap();
     } else {
-      this._renderMarkers();
+      this._renderMarkers(true);
     }
   }
 
