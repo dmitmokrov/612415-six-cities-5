@@ -5,6 +5,9 @@ export const getCity = (state) => state.PROCESS.city;
 export const getSortType = (state) => state.PROCESS.sortType;
 export const getActiveCardId = (state) => state.PROCESS.activeCardId;
 export const getOffers = (state) => state.DATA.offers;
+export const getOffer = (state) => state.DATA.offer;
+export const getNearbyOffers = (state) => state.DATA.nearbyOffers;
+export const getComments = (state) => state.DATA.comments;
 export const getAuthorizationStatus = (state) => state.USER.authorizationStatus;
 
 export const getFavoriteOffers = createSelector(

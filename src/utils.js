@@ -31,3 +31,25 @@ export const adaptToClient = (offer) => {
 
   return adaptedOffer;
 };
+
+export const adaptCommentToClient = (comment) => {
+  const adaptedComment = Object.assign(
+      {},
+      comment,
+      {
+        user: Object.assign(
+            {},
+            comment.user,
+            {
+              avatar: comment.user.avatar_url,
+              isPro: comment.user.is_pro
+            }
+        )
+      }
+  );
+
+  delete adaptedComment.user.avatar_url;
+  delete adaptedComment.user.is_pro;
+
+  return adaptedComment;
+};

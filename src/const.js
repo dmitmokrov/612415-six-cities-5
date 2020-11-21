@@ -69,3 +69,5 @@ export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
+
+export const ratingList = [`5`, `4`, `3`, `2`, `1`];

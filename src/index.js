@@ -4,7 +4,6 @@ import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
-import {reviews} from './mocks/reviews';
 import rootReducer from './store/reducers/root-reducer';
 import thunk from 'redux-thunk';
 import {createApi} from './services/api';
@@ -27,9 +26,7 @@ store.dispatch(checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        reviews={reviews}
-      />
+      <App/>
     </Provider>,
     document.querySelector(`#root`)
 );

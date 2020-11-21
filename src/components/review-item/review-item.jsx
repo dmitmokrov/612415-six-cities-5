@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 const ReviewItem = (props) => {
   const {review} = props;
-  const {author, comment, rating} = review;
+  const {user, comment, date, rating} = review;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={author.avatar} width="54" height="54" alt="Reviews avatar"/>
+          <img className="reviews__avatar user__avatar" src={user.avatar} width="54" height="54" alt="Reviews avatar"/>
         </div>
         <span className="reviews__user-name">
-          {author.name}
+          {user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -24,7 +24,7 @@ const ReviewItem = (props) => {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime={date}>{new Date(date).toDateString()}</time>
       </div>
     </li>
   );

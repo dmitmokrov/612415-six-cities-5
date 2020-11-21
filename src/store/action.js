@@ -4,6 +4,9 @@ export const ActionType = {
   CHANGE_ACTIVE_CARD: `CHANGE_ACTIVE_CARD`,
   RESET_ACTIVE_CARD: `RESET_ACTIVE_CARD`,
   LOAD_OFFERS: `LOAD_OFFERS`,
+  LOAD_OFFER: `LOAD_OFFER`,
+  LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
@@ -27,6 +30,18 @@ export const ActionCreator = {
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers
+  }),
+  loadOffer: (offer) => ({
+    type: ActionType.LOAD_OFFER,
+    payload: offer
+  }),
+  loadNearbyOffers: (offers) => ({
+    type: ActionType.LOAD_NEARBY_OFFERS,
+    payload: offers
+  }),
+  loadComments: (comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments
   }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
