@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FeaturesList render correctly 1`] = `
+Array [
+  <li
+    className="property__inside-item"
+  >
+    water
+  </li>,
+  <li
+    className="property__inside-item"
+  >
+    fire
+  </li>,
+  <li
+    className="property__inside-item"
+  >
+    bathroom
+  </li>,
+]
+`;
