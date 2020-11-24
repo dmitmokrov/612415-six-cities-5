@@ -1,6 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import FavoritesCities from './favorites-cities';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+import {NameSpace} from '../../store/reducers/root-reducer';
+import {cities, sortTypes, AuthorizationStatus} from '../../const';
 
 const offers = [
   {
@@ -73,11 +78,34 @@ const offers = [
   }
 ];
 
+const mockStore = configureStore();
+
 it(`Should FavoritesCities render correctly`, () => {
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      offers: [],
+      offer: null,
+      nearbyOffers: [],
+      comments: []
+    },
+    [NameSpace.PROCESS]: {
+      city: cities[0],
+      sortType: sortTypes[0],
+      activeCardId: null
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH
+    }
+  });
+
   const tree = renderer
-    .create(<FavoritesCities
-      offers={offers}
-    />)
+    .create(
+        <Provider store={store}>
+          <BrowserRouter>
+            <FavoritesCities offers={offers}/>
+          </BrowserRouter>
+        </Provider>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

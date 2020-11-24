@@ -1,6 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Places} from './places';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+import {NameSpace} from '../../store/reducers/root-reducer';
+import {cities, sortTypes, AuthorizationStatus} from '../../const';
 
 const offers = [
   {
@@ -76,30 +81,78 @@ const sortType = `Popular`;
 const city = `Amsterdam`;
 const noop = () => {};
 
+const mockStore = configureStore();
+
 describe(`Should Places render correctly`, () => {
   it(`With opened sorting`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        offers: [],
+        offer: null,
+        nearbyOffers: [],
+        comments: []
+      },
+      [NameSpace.PROCESS]: {
+        city: cities[0],
+        sortType: sortTypes[0],
+        activeCardId: null
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH
+      }
+    });
+
     const tree = renderer
-      .create(<Places
-        offers={offers}
-        sortType={sortType}
-        city={city}
-        isSortingListOpen={true}
-        onTogglerClick={noop}
-      />)
+      .create(
+          <Provider store={store}>
+            <BrowserRouter>
+              <Places
+                offers={offers}
+                sortType={sortType}
+                city={city}
+                isSortingListOpen={true}
+                onTogglerClick={noop}
+              />
+            </BrowserRouter>
+          </Provider>
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`With closed sorting`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        offers: [],
+        offer: null,
+        nearbyOffers: [],
+        comments: []
+      },
+      [NameSpace.PROCESS]: {
+        city: cities[0],
+        sortType: sortTypes[0],
+        activeCardId: null
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH
+      }
+    });
+
     const tree = renderer
-      .create(<Places
-        offers={offers}
-        sortType={sortType}
-        city={city}
-        isSortingListOpen={false}
-        onTogglerClick={noop}
-      />)
+      .create(
+          <Provider store={store}>
+            <BrowserRouter>
+              <Places
+                offers={offers}
+                sortType={sortType}
+                city={city}
+                isSortingListOpen={false}
+                onTogglerClick={noop}
+              />
+            </BrowserRouter>
+          </Provider>
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
