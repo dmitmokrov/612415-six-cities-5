@@ -205,4 +205,5 @@ OfferPage.propTypes = {
   onSubmitForm: PropTypes.func.isRequired
 };
 
+export {OfferPage};
 export default connect(mapStateToProps, mapDispatchToProps)(OfferPage);
