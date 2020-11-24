@@ -12,6 +12,13 @@ export const AppRoute = {
   OFFER: `/offer/:id`
 };
 
+export const ApiRoute = {
+  HOTELS: `/hotels`,
+  FAVORITE: `/favorite`,
+  COMMENTS: `/comments`,
+  LOGIN: `/login`
+};
+
 export const CardTypeOptions = {
   DEFAULT: {
     cardClassName: `cities__place-card`,
