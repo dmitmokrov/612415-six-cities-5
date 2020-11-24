@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Card} from './card';
+import {BrowserRouter} from 'react-router-dom';
 
 const cardOptions = {
   cardClassName: `cities__place-card`,
@@ -25,12 +26,16 @@ const noop = () => {};
 
 it(`Should Card render correctly`, () => {
   const tree = renderer
-    .create(<Card
-      cardOptions={cardOptions}
-      offer={offer}
-      changeActiveCard={noop}
-      resetActiveCard={noop}
-    />)
+    .create(
+        <BrowserRouter>
+          <Card
+            cardOptions={cardOptions}
+            offer={offer}
+            changeActiveCard={noop}
+            resetActiveCard={noop}
+          />
+        </BrowserRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
