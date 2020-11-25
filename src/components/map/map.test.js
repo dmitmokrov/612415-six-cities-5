@@ -1,11 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {MainPage} from './main-page';
-import configureStore from 'redux-mock-store';
-import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
-import {NameSpace} from '../../../store/reducers/root-reducer';
-import {cities, sortTypes, AuthorizationStatus} from '../../../const';
+import Map from './map';
 
 const offers = [
   {
@@ -16,7 +11,7 @@ const offers = [
         longitude: 4.895168,
         zoom: 10
       },
-      name: `Amsterdam`
+      name: `London`
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
@@ -78,41 +73,13 @@ const offers = [
   }
 ];
 
-const mockStore = configureStore();
-
-it(`Should MainPage render correctly`, () => {
-  const store = mockStore({
-    [NameSpace.DATA]: {
-      offers,
-      offer: null,
-      nearbyOffers: [],
-      comments: []
-    },
-    [NameSpace.PROCESS]: {
-      city: cities[0],
-      sortType: sortTypes[0],
-      activeCardId: null
-    },
-    [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.NO_AUTH
-    }
-  });
-
+it(`Should Map render correctly`, () => {
   const tree = renderer
-    .create(
-        <Provider store={store}>
-          <BrowserRouter>
-            <MainPage
-              city={`London`}
-              offers={offers}
-              sortType={`Popular`}
-              activeCardId={2}
-            />
-          </BrowserRouter>
-        </Provider>, {
-          createNodeMock: () => document.createElement(`div`)
-        }
-    )
+    .create(<Map
+      city={`London`}
+      offers={offers}
+      activeCardId={3}
+    />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
