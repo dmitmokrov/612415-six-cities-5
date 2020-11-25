@@ -89,6 +89,7 @@ exports[`Should Places render correctly With closed sorting 1`] = `
           </div>
           <button
             className="place-card__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -194,6 +195,7 @@ exports[`Should Places render correctly With closed sorting 1`] = `
           </div>
           <button
             className="place-card__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -374,6 +376,7 @@ exports[`Should Places render correctly With opened sorting 1`] = `
           </div>
           <button
             className="place-card__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -479,6 +482,7 @@ exports[`Should Places render correctly With opened sorting 1`] = `
           </div>
           <button
             className="place-card__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
