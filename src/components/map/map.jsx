@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
@@ -8,6 +8,7 @@ class Map extends PureComponent {
   constructor(props) {
     super(props);
     this._map = null;
+    this.mapRef = createRef();
   }
 
   _renderMarkers(withLayer = false) {
@@ -52,7 +53,7 @@ class Map extends PureComponent {
     const {city} = this.props;
     const center = CityCoords[city.toUpperCase()];
     const zoom = 12;
-    const map = leaflet.map(`map`, {
+    const map = leaflet.map(this.mapRef.current, {
       zoom,
       center,
       zoomControl: false,
@@ -86,7 +87,12 @@ class Map extends PureComponent {
 
   render() {
     return (
-      <div id="map" style={{height: `100%`}}></div>
+      <div
+        id="map"
+        style={{height: `100%`}}
+        ref={this.mapRef}
+      >
+      </div>
     );
   }
 }
