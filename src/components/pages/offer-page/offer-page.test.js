@@ -171,6 +171,7 @@ it(`Should OfferPage render correctly`, () => {
               city={`London`}
               comments={comments}
               nearbyOffers={nearbyOffers}
+              nearbyOffersForMap={nearbyOffers}
               loadOffer={noop}
               loadNearbyOffers={noop}
               loadComments={noop}

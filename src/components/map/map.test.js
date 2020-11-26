@@ -79,7 +79,9 @@ it(`Should Map render correctly`, () => {
       city={`London`}
       offers={offers}
       activeCardId={3}
-    />)
+    />, {
+      createNodeMock: () => document.createElement(`div`)
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();
