@@ -34,7 +34,7 @@ const MainPage = (props) => {
               {
                 offers.length &&
                 <section className="cities__map map">
-                  <Map city={city} offers={offers} activeCardId={activeCardId}/>
+                  <Map city={city} offers={offers} activeCardId={activeCardId} withLayer={false}/>
                 </section>
               }
             </div>

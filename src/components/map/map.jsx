@@ -11,8 +11,8 @@ class Map extends PureComponent {
     this.mapRef = createRef();
   }
 
-  _renderMarkers(withLayer = false) {
-    const {offers, activeCardId} = this.props;
+  _renderMarkers() {
+    const {offers, activeCardId, withLayer} = this.props;
     const iconSize = [30, 30];
     const icon = leaflet.icon({
       iconUrl: `./img/pin.svg`,
@@ -77,11 +77,14 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.city !== prevProps.city || this.props.activeCardId !== prevProps.activeCardId) {
+    if (this.props.city !== prevProps.city) {
       this._map.remove();
       this._renderMap();
-    } else {
-      this._renderMarkers(true);
+      return;
+    }
+
+    if (this.props.activeCardId !== prevProps.activeCardId) {
+      this._renderMarkers();
     }
   }
 
@@ -100,7 +103,8 @@ class Map extends PureComponent {
 Map.propTypes = {
   city: PropTypes.string,
   offers: PropTypes.array,
-  activeCardId: PropTypes.number
+  activeCardId: PropTypes.number,
+  withLayer: PropTypes.bool.isRequired
 };
 
 export default Map;

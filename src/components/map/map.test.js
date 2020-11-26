@@ -79,6 +79,7 @@ it(`Should Map render correctly`, () => {
       city={`London`}
       offers={offers}
       activeCardId={3}
+      withLayer={false}
     />, {
       createNodeMock: () => document.createElement(`div`)
     })

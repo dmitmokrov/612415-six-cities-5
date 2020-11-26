@@ -131,7 +131,7 @@ class OfferPage extends Component {
               </div>
             </div>
             <section className="property__map map">
-              <Map city={city.name} offers={nearbyOffersForMap} activeCardId={id}/>
+              <Map city={city.name} offers={nearbyOffersForMap} activeCardId={id} withLayer={true}/>
             </section>
           </section>
           <div className="container">
