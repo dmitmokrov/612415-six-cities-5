@@ -3,6 +3,7 @@ export const ActionType = {
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
   CHANGE_ACTIVE_CARD: `CHANGE_ACTIVE_CARD`,
   RESET_ACTIVE_CARD: `RESET_ACTIVE_CARD`,
+  ADD_OFFER_TO_FAVORITES: `ADD_OFFER_TO_FAVORITES`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_OFFER: `LOAD_OFFER`,
   LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
@@ -26,6 +27,10 @@ export const ActionCreator = {
   }),
   resetActiveCard: () => ({
     type: ActionType.RESET_ACTIVE_CARD
+  }),
+  addOfferToFavorites: (offer) => ({
+    type: ActionType.ADD_OFFER_TO_FAVORITES,
+    payload: offer
   }),
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,

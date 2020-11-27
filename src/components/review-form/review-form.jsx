@@ -32,4 +32,5 @@ ReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired
 };
 
+export {ReviewForm};
 export default withUserAssessment(ReviewForm);
