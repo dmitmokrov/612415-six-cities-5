@@ -8,8 +8,8 @@ import ReviewsList from '../../reviews-list/reviews-list';
 import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
-import {CardTypeOptions} from '../../../const';
-import {getCity, getOffer, getNearbyOffers, getComments} from '../../../store/selectors';
+import {CardTypeOptions, AuthorizationStatus} from '../../../const';
+import {getCity, getOffer, getNearbyOffers, getComments, getAuthorizationStatus} from '../../../store/selectors';
 import {fetchOffer, fetchNearbyOffers, fetchComments, sendComment} from '../../../store/api-actions';
 
 class OfferPage extends Component {
@@ -33,7 +33,7 @@ class OfferPage extends Component {
   }
 
   render() {
-    const {offer, nearbyOffers, nearbyOffersForMap, comments, onSubmitForm} = this.props;
+    const {offer, nearbyOffers, nearbyOffersForMap, comments, onSubmitForm, isAuth} = this.props;
 
     if (!offer) {
       return <div>Loading...</div>;
@@ -125,7 +125,9 @@ class OfferPage extends Component {
                     </Fragment>
                   }
 
-                  <ReviewForm id={id} onSubmitForm={onSubmitForm}/>
+                  {
+                    isAuth && <ReviewForm id={id} onSubmitForm={onSubmitForm}/>
+                  }
 
                 </section>
               </div>
@@ -153,7 +155,8 @@ const mapStateToProps = (state) => ({
   offer: getOffer(state),
   nearbyOffers: getNearbyOffers(state),
   nearbyOffersForMap: [...getNearbyOffers(state), getOffer(state)],
-  comments: getComments(state)
+  comments: getComments(state),
+  isAuth: getAuthorizationStatus(state) === AuthorizationStatus.AUTH
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -202,7 +205,8 @@ OfferPage.propTypes = {
   loadOffer: PropTypes.func.isRequired,
   loadNearbyOffers: PropTypes.func.isRequired,
   loadComments: PropTypes.func.isRequired,
-  onSubmitForm: PropTypes.func.isRequired
+  onSubmitForm: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired
 };
 
 export {OfferPage};
