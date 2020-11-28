@@ -8,7 +8,8 @@ import ReviewsList from '../../reviews-list/reviews-list';
 import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
-import {CardTypeOptions, AuthorizationStatus} from '../../../const';
+import {CardTypeOptions, AuthorizationStatus, AppRoute} from '../../../const';
+import {ActionCreator} from '../../../store/action';
 import {getCity, getOffer, getNearbyOffers, getComments, getAuthorizationStatus} from '../../../store/selectors';
 import {fetchOffer, fetchNearbyOffers, fetchComments, sendComment} from '../../../store/api-actions';
 
@@ -33,7 +34,7 @@ class OfferPage extends Component {
   }
 
   render() {
-    const {offer, nearbyOffers, nearbyOffersForMap, comments, onSubmitForm, isAuth} = this.props;
+    const {offer, nearbyOffers, nearbyOffersForMap, comments, onSubmitForm, isAuth, redirectToRoute, addOfferToFavorites} = this.props;
 
     if (!offer) {
       return <div>Loading...</div>;
@@ -64,7 +65,15 @@ class OfferPage extends Component {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button className="property__bookmark-button button" type="button">
+                  <button className="property__bookmark-button button" type="button" onClick={
+                    () => {
+                      if (!isAuth) {
+                        redirectToRoute(AppRoute.LOGIN);
+                        return;
+                      }
+                      addOfferToFavorites(offer);
+                    }
+                  }>
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
@@ -171,6 +180,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onSubmitForm(id, {comment, rating}) {
     dispatch(sendComment(id, {comment, rating}));
+  },
+  addOfferToFavorites(offer) {
+    dispatch(ActionCreator.addOfferToFavorites(offer));
+  },
+  redirectToRoute(route) {
+    dispatch(ActionCreator.redirectToRoute(route));
   }
 });
 
@@ -206,6 +221,8 @@ OfferPage.propTypes = {
   loadNearbyOffers: PropTypes.func.isRequired,
   loadComments: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
+  redirectToRoute: PropTypes.func.isRequired,
+  addOfferToFavorites: PropTypes.func,
   isAuth: PropTypes.bool.isRequired
 };
 
