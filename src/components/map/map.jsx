@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 import {CityCoords} from '../../const';
+import {isArraysEqual} from '../../utils';
 
 class Map extends PureComponent {
   constructor(props) {
@@ -84,6 +85,10 @@ class Map extends PureComponent {
     }
 
     if (this.props.activeCardId !== prevProps.activeCardId) {
+      this._renderMarkers();
+    }
+
+    if (!isArraysEqual(this.props.offers, prevProps.offers)) {
       this._renderMarkers();
     }
   }
