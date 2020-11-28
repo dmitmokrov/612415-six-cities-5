@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {connect} from 'react-redux';
-import {getAuthorizationStatus} from '../../store/selectors';
+import {getAuthorizationStatus, getUserInfo} from '../../store/selectors';
 import {AuthorizationStatus} from '../../const';
 
 const Header = (props) => {
-  const {authorizationStatus} = props;
+  const {authorizationStatus, userInfo} = props;
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
@@ -27,7 +27,7 @@ const Header = (props) => {
                   </div>
                   {
                     isAuth
-                      ? <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      ? <span className="header__user-name user__name">{userInfo.email}</span>
                       : <span className="header__login">Sign in</span>
                   }
                 </Link>
@@ -41,11 +41,13 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  userInfo: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state)
+  authorizationStatus: getAuthorizationStatus(state),
+  userInfo: getUserInfo(state)
 });
 
 export {Header};

@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  GET_USER: `GET_USER`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
 
@@ -51,6 +52,10 @@ export const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status
+  }),
+  getUser: (user) => ({
+    type: ActionType.GET_USER,
+    payload: user
   }),
   redirectToRoute: (route) => ({
     type: ActionType.REDIRECT_TO_ROUTE,

@@ -10,7 +10,7 @@ export const getOffer = (state) => state.DATA.offer;
 export const getNearbyOffers = (state) => state.DATA.nearbyOffers;
 export const getComments = (state) => state.DATA.comments;
 export const getAuthorizationStatus = (state) => state.USER.authorizationStatus;
-
+export const getUserInfo = (state) => state.USER.userInfo;
 
 export const getOffersInCityBySortType = createSelector(
     getOffers,
