@@ -83,3 +83,6 @@ export const FavoriteStatus = {
   FAVORITE: 1,
   NOT_FAVORITE: 0
 };
+
+export const MAX_PHOTOS_LENGTH = 6;
+export const MAX_COMMENTS_LENGTH = 10;

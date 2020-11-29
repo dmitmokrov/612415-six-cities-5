@@ -140,7 +140,7 @@ exports[`Should FavoritesPage render correctly 1`] = `
                       </span>
                     </div>
                     <button
-                      className="place-card__bookmark-button button"
+                      className="place-card__bookmark-button  button"
                       onClick={[Function]}
                       type="button"
                     >
@@ -263,7 +263,7 @@ exports[`Should FavoritesPage render correctly 1`] = `
                       </span>
                     </div>
                     <button
-                      className="place-card__bookmark-button button"
+                      className="place-card__bookmark-button place-card__bookmark-button--active button"
                       onClick={[Function]}
                       type="button"
                     >

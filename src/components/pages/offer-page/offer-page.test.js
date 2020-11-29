@@ -177,6 +177,8 @@ it(`Should OfferPage render correctly`, () => {
               loadComments={noop}
               match={{params: {id: 1}}}
               onSubmitForm={noop}
+              redirectToRoute={noop}
+              isAuth={true}
             />
           </BrowserRouter>
         </Provider>, {

@@ -106,7 +106,8 @@ exports[`Should OfferPage render correctly 1`] = `
               Beautiful & luxurious studio at great location
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button  button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -650,7 +651,7 @@ exports[`Should OfferPage render correctly 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button  button"
                   onClick={[Function]}
                   type="button"
                 >
@@ -749,7 +750,7 @@ exports[`Should OfferPage render correctly 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button place-card__bookmark-button--active button"
                   onClick={[Function]}
                   type="button"
                 >

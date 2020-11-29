@@ -10,17 +10,20 @@ const api = createApi(() => {});
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(user(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    userInfo: {}
   });
 });
 
 it(`Reducer should update authorizationStatus to "auth"`, () => {
   expect(user({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    userInfo: {}
   }, {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: AuthorizationStatus.AUTH
   })).toEqual({
-    authorizationStatus: AuthorizationStatus.AUTH
+    authorizationStatus: AuthorizationStatus.AUTH,
+    userInfo: {}
   });
 });
 
@@ -36,10 +39,14 @@ describe(`Async operation work correctly`, () => {
 
     return checkAuthLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.GET_USER,
+          payload: [{fake: true}]
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.REQUIRED_AUTHORIZATION,
-          payload: AuthorizationStatus.AUTH,
+          payload: AuthorizationStatus.AUTH
         });
       });
   });
@@ -56,12 +63,16 @@ describe(`Async operation work correctly`, () => {
 
     return loginLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.GET_USER,
+          payload: [{fake: true}]
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: AuthorizationStatus.AUTH,
         });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.REDIRECT_TO_ROUTE,
           payload: AppRoute.HOME,
         });

@@ -8,7 +8,7 @@ import ReviewsList from '../../reviews-list/reviews-list';
 import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
-import {CardTypeOptions, AuthorizationStatus, AppRoute, FavoriteStatus} from '../../../const';
+import {CardTypeOptions, AuthorizationStatus, AppRoute, FavoriteStatus, MAX_PHOTOS_LENGTH, MAX_COMMENTS_LENGTH} from '../../../const';
 import {ActionCreator} from '../../../store/action';
 import {getCity, getOffer, getNearbyOffers, getComments, getAuthorizationStatus} from '../../../store/selectors';
 import {fetchOffer, fetchNearbyOffers, fetchComments, sendComment, addOfferToFavorites} from '../../../store/api-actions';
@@ -50,7 +50,7 @@ class OfferPage extends Component {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                <PhotosList photos={images}/>
+                <PhotosList photos={images.slice(0, MAX_PHOTOS_LENGTH)}/>
               </div>
             </div>
             <div className="property__container container">
@@ -134,7 +134,7 @@ class OfferPage extends Component {
                     <Fragment>
                       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
                       <ul className="reviews__list">
-                        <ReviewsList comments={comments}/>
+                        <ReviewsList comments={comments.slice(0, MAX_COMMENTS_LENGTH)}/>
                       </ul>
                     </Fragment>
                   }
