@@ -24,6 +24,7 @@ export const fetchComments = (id) => (dispatch, _getState, api) => (
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
+    .then(({data}) => dispatch(ActionCreator.getUser(data)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .catch((err) => {
       throw err;
@@ -40,4 +41,9 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const sendComment = (id, {comment, rating}) => (dispatch, _getState, api) => (
   api.post(`/comments/${id}`, {comment, rating})
   .then(({data}) => dispatch(ActionCreator.loadComments(data)))
+);
+
+export const addOfferToFavorites = (id, status) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`)
+    .then(() => dispatch(ActionCreator.addOfferToFavorites(id)))
 );

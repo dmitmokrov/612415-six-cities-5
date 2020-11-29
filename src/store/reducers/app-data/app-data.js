@@ -1,5 +1,5 @@
 import {ActionType} from '../../action';
-import {extend, adaptToClient, adaptCommentToClient} from '../../../utils';
+import {extend, adaptToClient, adaptCommentToClient, changeFavoriteStatus} from '../../../utils';
 
 const initialState = {
   offers: [],
@@ -39,6 +39,20 @@ const appData = (state = initialState, action) => {
           state,
           {
             comments: action.payload.map(adaptCommentToClient)
+          }
+      );
+
+    case ActionType.ADD_OFFER_TO_FAVORITES:
+      return extend(
+          state,
+          {
+            offers: changeFavoriteStatus(state.offers, action.payload),
+            offer: state.offer && extend(
+                state.offer,
+                {
+                  isFavorite: !state.offer.isFavorite
+                }
+            )
           }
       );
   }

@@ -4,7 +4,6 @@ import {SortType} from '../const';
 export const getCity = (state) => state.PROCESS.city;
 export const getSortType = (state) => state.PROCESS.sortType;
 export const getActiveCardId = (state) => state.PROCESS.activeCardId;
-export const getFavoriteOffers = (state) => state.PROCESS.favorites;
 export const getOffers = (state) => state.DATA.offers;
 export const getOffer = (state) => state.DATA.offer;
 export const getNearbyOffers = (state) => state.DATA.nearbyOffers;
@@ -55,5 +54,12 @@ export const getOffersInCityBySortType = createSelector(
         default:
           return offersInCity;
       }
+    }
+);
+
+export const getFavoriteOffers = createSelector(
+    getOffers,
+    (offers) => {
+      return offers.filter((offer) => offer.isFavorite === true);
     }
 );

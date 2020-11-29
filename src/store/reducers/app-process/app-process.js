@@ -5,8 +5,7 @@ import {extend} from '../../../utils';
 const initialState = {
   city: cities[0],
   sortType: sortTypes[0],
-  activeCardId: null,
-  favorites: []
+  activeCardId: null
 };
 
 const appProcess = (state = initialState, action) => {
@@ -40,14 +39,6 @@ const appProcess = (state = initialState, action) => {
           state,
           {
             activeCardId: null
-          }
-      );
-
-    case ActionType.ADD_OFFER_TO_FAVORITES:
-      return extend(
-          state,
-          {
-            favorites: [...state.favorites, action.payload]
           }
       );
   }

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SortingList from '../sorting-list/sorting-list';
-import OffersList from '../offers-list/offers-list';
+// import OffersList from '../offers-list/offers-list';
+import CardsList from '../cards-list/cards-list';
 import withSortingList from '../../hocs/with-sorting-list/with-sorting-list';
 
 const Places = (props) => {
@@ -25,7 +26,7 @@ const Places = (props) => {
       </form>
 
       <div className="cities__places-list places__list tabs__content">
-        <OffersList offers={offers}/>
+        <CardsList offers={offers}/>
       </div>
     </section>
   );

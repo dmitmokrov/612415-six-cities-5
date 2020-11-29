@@ -8,10 +8,10 @@ import ReviewsList from '../../reviews-list/reviews-list';
 import ReviewForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import CardsList from '../../cards-list/cards-list';
-import {CardTypeOptions, AuthorizationStatus, AppRoute} from '../../../const';
+import {CardTypeOptions, AuthorizationStatus, AppRoute, FavoriteStatus} from '../../../const';
 import {ActionCreator} from '../../../store/action';
 import {getCity, getOffer, getNearbyOffers, getComments, getAuthorizationStatus} from '../../../store/selectors';
-import {fetchOffer, fetchNearbyOffers, fetchComments, sendComment} from '../../../store/api-actions';
+import {fetchOffer, fetchNearbyOffers, fetchComments, sendComment, addOfferToFavorites} from '../../../store/api-actions';
 
 class OfferPage extends Component {
   componentDidMount() {
@@ -34,13 +34,13 @@ class OfferPage extends Component {
   }
 
   render() {
-    const {offer, nearbyOffers, nearbyOffersForMap, comments, onSubmitForm, isAuth, redirectToRoute, addOfferToFavorites} = this.props;
+    const {offer, nearbyOffers, nearbyOffersForMap, comments, onSubmitForm, isAuth, redirectToRoute, favoriteButtonClickHandler} = this.props;
 
     if (!offer) {
       return <div>Loading...</div>;
     }
 
-    const {id, city, title, description, type, price, rating, isPremium, bedrooms, guestsMaxCount, goods, images, host} = offer;
+    const {id, city, title, description, type, price, rating, isPremium, isFavorite, bedrooms, guestsMaxCount, goods, images, host} = offer;
 
     return (
       <div className="page">
@@ -65,13 +65,18 @@ class OfferPage extends Component {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button className="property__bookmark-button button" type="button" onClick={
+                  <button className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`} type="button" onClick={
                     () => {
                       if (!isAuth) {
                         redirectToRoute(AppRoute.LOGIN);
                         return;
                       }
-                      addOfferToFavorites(offer);
+
+                      if (isFavorite) {
+                        favoriteButtonClickHandler(id, FavoriteStatus.NOT_FAVORITE);
+                      } else {
+                        favoriteButtonClickHandler(id, FavoriteStatus.FAVORITE);
+                      }
                     }
                   }>
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -181,11 +186,11 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmitForm(id, {comment, rating}) {
     dispatch(sendComment(id, {comment, rating}));
   },
-  addOfferToFavorites(offer) {
-    dispatch(ActionCreator.addOfferToFavorites(offer));
-  },
   redirectToRoute(route) {
     dispatch(ActionCreator.redirectToRoute(route));
+  },
+  favoriteButtonClickHandler(id, status) {
+    dispatch(addOfferToFavorites(id, status));
   }
 });
 
@@ -205,6 +210,7 @@ OfferPage.propTypes = {
     guestsMaxCount: PropTypes.number,
     goods: PropTypes.arrayOf(PropTypes.string),
     images: PropTypes.arrayOf(PropTypes.string),
+    isFavorite: PropTypes.bool,
     host: PropTypes.shape({
       avatar: PropTypes.string,
       name: PropTypes.string
@@ -222,7 +228,7 @@ OfferPage.propTypes = {
   loadComments: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   redirectToRoute: PropTypes.func.isRequired,
-  addOfferToFavorites: PropTypes.func,
+  favoriteButtonClickHandler: PropTypes.func,
   isAuth: PropTypes.bool.isRequired
 };
 

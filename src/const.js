@@ -78,3 +78,8 @@ export const AuthorizationStatus = {
 };
 
 export const ratingList = [`5`, `4`, `3`, `2`, `1`];
+
+export const FavoriteStatus = {
+  FAVORITE: 1,
+  NOT_FAVORITE: 0
+};

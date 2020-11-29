@@ -7,6 +7,7 @@ export const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_OFFER: `LOAD_OFFER`,
   LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   GET_USER: `GET_USER`,
@@ -29,9 +30,9 @@ export const ActionCreator = {
   resetActiveCard: () => ({
     type: ActionType.RESET_ACTIVE_CARD
   }),
-  addOfferToFavorites: (offer) => ({
+  addOfferToFavorites: (offerId) => ({
     type: ActionType.ADD_OFFER_TO_FAVORITES,
-    payload: offer
+    payload: offerId
   }),
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
