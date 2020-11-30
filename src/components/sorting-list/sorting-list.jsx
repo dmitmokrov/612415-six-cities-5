@@ -24,6 +24,11 @@ const SortingList = (props) => {
   );
 };
 
+SortingList.propTypes = {
+  activeSortType: PropTypes.string.isRequired,
+  changeSortType: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => ({
   activeSortType: getSortType(state)
 });
@@ -33,11 +38,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeSortType(sortType));
   }
 });
-
-SortingList.propTypes = {
-  activeSortType: PropTypes.string.isRequired,
-  changeSortType: PropTypes.func.isRequired
-};
 
 export {SortingList};
 export default connect(mapStateToProps, mapDispatchToProps)(SortingList);

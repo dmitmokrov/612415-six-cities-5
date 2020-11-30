@@ -20,6 +20,11 @@ const CitiesList = (props) => {
   );
 };
 
+CitiesList.propTypes = {
+  city: PropTypes.string.isRequired,
+  changeCity: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => ({
   city: getCity(state)
 });
@@ -29,11 +34,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCity(city));
   }
 });
-
-CitiesList.propTypes = {
-  city: PropTypes.string.isRequired,
-  changeCity: PropTypes.func.isRequired
-};
 
 export {CitiesList};
 export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);

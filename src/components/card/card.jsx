@@ -76,6 +76,18 @@ Card.defaultProps = {
   cardOptions: CardTypeOptions.DEFAULT
 };
 
+Card.propTypes = {
+  cardOptions: PropTypes.object,
+  offer: PropTypes.object.isRequired,
+  favoritesId: PropTypes.array,
+  changeActiveCard: PropTypes.func,
+  resetActiveCard: PropTypes.func,
+  addOfferToFavorites: PropTypes.func,
+  redirectToRoute: PropTypes.func,
+  favoriteButtonClickHandler: PropTypes.func,
+  isAuth: PropTypes.bool
+};
+
 const mapStateToProps = (state) => ({
   isAuth: getAuthorizationStatus(state) === AuthorizationStatus.AUTH
 });
@@ -94,18 +106,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addOfferToFavorites(id, status));
   }
 });
-
-Card.propTypes = {
-  cardOptions: PropTypes.object,
-  offer: PropTypes.object.isRequired,
-  favoritesId: PropTypes.array,
-  changeActiveCard: PropTypes.func,
-  resetActiveCard: PropTypes.func,
-  addOfferToFavorites: PropTypes.func,
-  redirectToRoute: PropTypes.func,
-  favoriteButtonClickHandler: PropTypes.func,
-  isAuth: PropTypes.bool
-};
 
 export {Card};
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

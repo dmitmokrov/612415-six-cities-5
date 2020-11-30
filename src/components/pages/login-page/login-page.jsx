@@ -59,15 +59,15 @@ class LoginPage extends PureComponent {
   }
 }
 
+LoginPage.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
   }
 });
-
-LoginPage.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-};
 
 export {LoginPage};
 export default connect(null, mapDispatchToProps)(LoginPage);

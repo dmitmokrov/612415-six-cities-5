@@ -164,36 +164,6 @@ class OfferPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  city: getCity(state),
-  offer: getOffer(state),
-  nearbyOffers: getNearbyOffers(state),
-  nearbyOffersForMap: [...getNearbyOffers(state), getOffer(state)],
-  comments: getComments(state),
-  isAuth: getAuthorizationStatus(state) === AuthorizationStatus.AUTH
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadOffer(id) {
-    dispatch(fetchOffer(id));
-  },
-  loadNearbyOffers(id) {
-    dispatch(fetchNearbyOffers(id));
-  },
-  loadComments(id) {
-    dispatch(fetchComments(id));
-  },
-  onSubmitForm(id, {comment, rating}) {
-    dispatch(sendComment(id, {comment, rating}));
-  },
-  redirectToRoute(route) {
-    dispatch(ActionCreator.redirectToRoute(route));
-  },
-  favoriteButtonClickHandler(id, status) {
-    dispatch(addOfferToFavorites(id, status));
-  }
-});
-
 OfferPage.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number,
@@ -231,6 +201,36 @@ OfferPage.propTypes = {
   favoriteButtonClickHandler: PropTypes.func,
   isAuth: PropTypes.bool.isRequired
 };
+
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  offer: getOffer(state),
+  nearbyOffers: getNearbyOffers(state),
+  nearbyOffersForMap: [...getNearbyOffers(state), getOffer(state)],
+  comments: getComments(state),
+  isAuth: getAuthorizationStatus(state) === AuthorizationStatus.AUTH
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadOffer(id) {
+    dispatch(fetchOffer(id));
+  },
+  loadNearbyOffers(id) {
+    dispatch(fetchNearbyOffers(id));
+  },
+  loadComments(id) {
+    dispatch(fetchComments(id));
+  },
+  onSubmitForm(id, {comment, rating}) {
+    dispatch(sendComment(id, {comment, rating}));
+  },
+  redirectToRoute(route) {
+    dispatch(ActionCreator.redirectToRoute(route));
+  },
+  favoriteButtonClickHandler(id, status) {
+    dispatch(addOfferToFavorites(id, status));
+  }
+});
 
 export {OfferPage};
 export default connect(mapStateToProps, mapDispatchToProps)(OfferPage);
