@@ -2,9 +2,9 @@ import MockAdapter from "axios-mock-adapter";
 import {createApi} from "../../../services/api";
 import {appData} from "./app-data";
 import {ActionType} from "../../action";
-import {fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments} from "../../api-actions";
+import {fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, addOfferToFavorites} from "../../api-actions";
 import {ApiRoute} from "../../../const";
-import {adaptToClient, adaptCommentToClient} from "../../../utils";
+import {adaptToClient, adaptCommentToClient, changeFavoriteStatus} from "../../../utils";
 
 const api = createApi(() => {});
 
@@ -183,6 +183,23 @@ it(`Reducer should update comments by load comments`, () => {
   });
 });
 
+it(`Reducer should update favorite status of one offer in offers`, () => {
+  expect(appData({
+    offers,
+    offer: null,
+    nearbyOffers: [],
+    comments: []
+  }, {
+    type: ActionType.ADD_OFFER_TO_FAVORITES,
+    payload: 1,
+  })).toEqual({
+    offers: changeFavoriteStatus(offers, 1),
+    offer: null,
+    nearbyOffers: [],
+    comments: []
+  });
+});
+
 describe(`Async operation work correctly`, () => {
   it(`Should make a correct API call to /hotels`, () => {
     const apiMock = new MockAdapter(api);
@@ -259,6 +276,27 @@ describe(`Async operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_COMMENTS,
           payload: [{fake: true}],
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /favorite/:id/:status`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const id = 1;
+    const status = 1;
+    const favoriteStatusLoader = addOfferToFavorites(id, status);
+
+    apiMock
+      .onPost(`${ApiRoute.FAVORITE}/${id}/${status}`)
+      .reply(200, {id: 1});
+
+    return favoriteStatusLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.ADD_OFFER_TO_FAVORITES,
+          payload: 1
         });
       });
   });
