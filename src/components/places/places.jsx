@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SortingList from '../sorting-list/sorting-list';
-// import OffersList from '../offers-list/offers-list';
 import CardsList from '../cards-list/cards-list';
 import withSortingList from '../../hocs/with-sorting-list/with-sorting-list';
 

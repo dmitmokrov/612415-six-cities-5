@@ -12,7 +12,4 @@ it(`Should open/close sorting list`, () => {
   const wrapper = shallow(<MockComponentWrapped />);
 
   expect(wrapper.state().isSortingListOpen).toEqual(false);
-
-  // Вызов onTogglerClick ???
-  // expect(wrapper.state().isSortingListOpen).toEqual(true);
 });
