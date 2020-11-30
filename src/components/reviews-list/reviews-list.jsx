@@ -12,7 +12,18 @@ const ReviewsList = (props) => {
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.array
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    user: PropTypes.shape({
+      avatar: PropTypes.string,
+      id: PropTypes.number,
+      isPro: PropTypes.bool,
+      name: PropTypes.string
+    }),
+    comment: PropTypes.string,
+    date: PropTypes.string,
+    rating: PropTypes.number,
+    id: PropTypes.number
+  }))
 };
 
 export default ReviewsList;

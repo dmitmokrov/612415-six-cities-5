@@ -186,12 +186,40 @@ OfferPage.propTypes = {
       name: PropTypes.string
     })
   }),
-  nearbyOffers: PropTypes.array,
-  nearbyOffersForMap: PropTypes.array,
-  comments: PropTypes.array,
+  nearbyOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
+    previewImage: PropTypes.string
+  })),
+  nearbyOffersForMap: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
+    previewImage: PropTypes.string
+  })),
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    user: PropTypes.shape({
+      avatar: PropTypes.string,
+      id: PropTypes.number,
+      isPro: PropTypes.bool,
+      name: PropTypes.string
+    }),
+    comment: PropTypes.string,
+    date: PropTypes.string,
+    rating: PropTypes.number,
+    id: PropTypes.number
+  })),
   city: PropTypes.string.isRequired,
   activeCardId: PropTypes.number,
-  reviews: PropTypes.array,
   match: PropTypes.object.isRequired,
   loadOffer: PropTypes.func.isRequired,
   loadNearbyOffers: PropTypes.func.isRequired,

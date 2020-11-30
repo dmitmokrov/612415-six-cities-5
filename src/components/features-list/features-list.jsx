@@ -13,7 +13,7 @@ const FeaturesList = (props) => {
 };
 
 FeaturesList.propTypes = {
-  features: PropTypes.array
+  features: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default FeaturesList;

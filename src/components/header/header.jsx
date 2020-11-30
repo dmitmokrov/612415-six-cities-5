@@ -42,7 +42,9 @@ const Header = (props) => {
 
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  userInfo: PropTypes.object
+  userInfo: PropTypes.shape({
+    email: PropTypes.string
+  })
 };
 
 const mapStateToProps = (state) => ({

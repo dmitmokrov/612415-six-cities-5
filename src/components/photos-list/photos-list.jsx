@@ -13,7 +13,7 @@ const PhotosList = (props) => {
 };
 
 PhotosList.propTypes = {
-  photos: PropTypes.array
+  photos: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default PhotosList;

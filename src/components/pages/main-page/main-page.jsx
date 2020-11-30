@@ -47,7 +47,16 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
+    previewImage: PropTypes.string
+  })),
   sortType: PropTypes.string.isRequired,
   activeCardId: PropTypes.number
 };

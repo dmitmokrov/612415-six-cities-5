@@ -26,7 +26,24 @@ const FavoritesCities = (props) => {
 };
 
 FavoritesCities.propTypes = {
-  offers: PropTypes.array
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
+    previewImage: PropTypes.string,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number
+      }),
+      name: PropTypes.string
+    })
+  }))
 };
 
 export default FavoritesCities;

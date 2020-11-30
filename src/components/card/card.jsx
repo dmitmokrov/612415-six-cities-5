@@ -78,8 +78,16 @@ Card.defaultProps = {
 
 Card.propTypes = {
   cardOptions: PropTypes.object,
-  offer: PropTypes.object.isRequired,
-  favoritesId: PropTypes.array,
+  offer: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
+    previewImage: PropTypes.string
+  }),
   changeActiveCard: PropTypes.func,
   resetActiveCard: PropTypes.func,
   addOfferToFavorites: PropTypes.func,

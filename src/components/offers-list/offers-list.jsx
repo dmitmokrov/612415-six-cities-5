@@ -17,7 +17,16 @@ const OffersList = (props) => {
 
 
 OffersList.propTypes = {
-  offers: PropTypes.array,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
+    previewImage: PropTypes.string
+  }))
 };
 
 export default OffersList;

@@ -31,7 +31,17 @@ const ReviewItem = (props) => {
 };
 
 ReviewItem.propTypes = {
-  review: PropTypes.object
+  review: PropTypes.shape({
+    user: PropTypes.shape({
+      avatar: PropTypes.string,
+      id: PropTypes.number,
+      isPro: PropTypes.bool,
+      name: PropTypes.string
+    }),
+    comment: PropTypes.string,
+    date: PropTypes.string,
+    rating: PropTypes.number
+  })
 };
 
 export default ReviewItem;

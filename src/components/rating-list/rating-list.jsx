@@ -1,7 +1,9 @@
 import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 import {RATING_LIST} from '../../const';
 
-const RatingList = ({rating, onChange}) => {
+const RatingList = (props) => {
+  const {rating, onChange} = props;
   return (
     RATING_LIST.map((it) => {
       return (
@@ -16,6 +18,11 @@ const RatingList = ({rating, onChange}) => {
       );
     })
   );
+};
+
+RatingList.propTypes = {
+  rating: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 export default RatingList;
