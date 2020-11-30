@@ -12,6 +12,26 @@ class Map extends PureComponent {
     this.mapRef = createRef();
   }
 
+  componentDidMount() {
+    this._renderMap();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.city !== prevProps.city) {
+      this._map.remove();
+      this._renderMap();
+      return;
+    }
+
+    if (this.props.activeCardId !== prevProps.activeCardId) {
+      this._renderMarkers();
+    }
+
+    if (!isArraysEqual(this.props.offers, prevProps.offers)) {
+      this._renderMarkers();
+    }
+  }
+
   _renderMarkers() {
     const {offers, activeCardId, withLayer} = this.props;
     const iconSize = [30, 30];
@@ -71,26 +91,6 @@ class Map extends PureComponent {
       .addTo(map);
 
     this._renderMarkers();
-  }
-
-  componentDidMount() {
-    this._renderMap();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.city !== prevProps.city) {
-      this._map.remove();
-      this._renderMap();
-      return;
-    }
-
-    if (this.props.activeCardId !== prevProps.activeCardId) {
-      this._renderMarkers();
-    }
-
-    if (!isArraysEqual(this.props.offers, prevProps.offers)) {
-      this._renderMarkers();
-    }
   }
 
   render() {
