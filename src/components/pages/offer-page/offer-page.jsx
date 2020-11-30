@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../../header/header';
@@ -13,7 +13,7 @@ import {ActionCreator} from '../../../store/action';
 import {getCity, getOffer, getNearbyOffers, getComments, getAuthorizationStatus} from '../../../store/selectors';
 import {fetchOffer, fetchNearbyOffers, fetchComments, sendComment, addOfferToFavorites} from '../../../store/api-actions';
 
-class OfferPage extends Component {
+class OfferPage extends PureComponent {
   componentDidMount() {
     const {loadOffer, loadNearbyOffers, loadComments} = this.props;
     const id = this.props.match.params.id;
