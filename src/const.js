@@ -52,7 +52,7 @@ export const CardTypeOptions = {
   }
 };
 
-export const cities = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
+export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 
 export const CityCoords = {
   PARIS: [48.85341, 2.34],
@@ -63,7 +63,7 @@ export const CityCoords = {
   DUSSELDORF: [51.22172, 6.77]
 };
 
-export const sortTypes = [`Popular`, `Price: low to high`, `Price: high to low`, `Top rated first`];
+export const SORT_TYPES = [`Popular`, `Price: low to high`, `Price: high to low`, `Top rated first`];
 
 export const SortType = {
   POPULAR: `Popular`,
@@ -77,7 +77,7 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-export const ratingList = [`5`, `4`, `3`, `2`, `1`];
+export const RATING_LIST = [`5`, `4`, `3`, `2`, `1`];
 
 export const FavoriteStatus = {
   FAVORITE: 1,

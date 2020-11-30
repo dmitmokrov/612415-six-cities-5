@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import {sortTypes} from '../../const';
+import {SORT_TYPES} from '../../const';
 import {getSortType} from '../../store/selectors';
 
 const SortingList = (props) => {
@@ -10,7 +10,7 @@ const SortingList = (props) => {
 
   return (
     <ul className="places__options places__options--custom places__options--opened">
-      {sortTypes.map((sortType) => (
+      {SORT_TYPES.map((sortType) => (
         <li
           className={`places__option ${sortType === activeSortType ? `places__option--active` : ``}`}
           tabIndex="0"

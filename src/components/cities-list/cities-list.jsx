@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/action';
 import {connect} from 'react-redux';
-import {cities} from '../../const';
+import {CITIES} from '../../const';
 import CityItem from '../city-item/city-item';
 import {getCity} from '../../store/selectors';
 
@@ -10,7 +10,7 @@ const CitiesList = (props) => {
   const {city, changeCity} = props;
 
   return (
-    cities.map((cityItem) => (
+    CITIES.map((cityItem) => (
       <CityItem
         key={cityItem}
         city={cityItem}

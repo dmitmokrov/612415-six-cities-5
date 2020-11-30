@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {NameSpace} from '../../store/reducers/root-reducer';
-import {cities, sortTypes, AuthorizationStatus} from '../../const';
+import {CITIES, SORT_TYPES, AuthorizationStatus} from '../../const';
 
 const offers = [
   {
@@ -93,8 +93,8 @@ describe(`Should Places render correctly`, () => {
         comments: []
       },
       [NameSpace.PROCESS]: {
-        city: cities[0],
-        sortType: sortTypes[0],
+        city: CITIES[0],
+        sortType: SORT_TYPES[0],
         activeCardId: null
       },
       [NameSpace.USER]: {
@@ -130,8 +130,8 @@ describe(`Should Places render correctly`, () => {
         comments: []
       },
       [NameSpace.PROCESS]: {
-        city: cities[0],
-        sortType: sortTypes[0],
+        city: CITIES[0],
+        sortType: SORT_TYPES[0],
         activeCardId: null
       },
       [NameSpace.USER]: {

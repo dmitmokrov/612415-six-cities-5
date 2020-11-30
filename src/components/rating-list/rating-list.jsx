@@ -1,9 +1,9 @@
 import React, {Fragment} from 'react';
-import {ratingList} from '../../const';
+import {RATING_LIST} from '../../const';
 
 const RatingList = ({rating, onChange}) => {
   return (
-    ratingList.map((it) => {
+    RATING_LIST.map((it) => {
       return (
         <Fragment key={it}>
           <input className="form__rating-input visually-hidden" name="rating" value={it} id={`${it}-stars`} type="radio" onChange={onChange} checked={rating === it}/>

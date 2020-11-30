@@ -1,10 +1,10 @@
 import {ActionType} from '../../action';
-import {cities, sortTypes} from '../../../const';
+import {CITIES, SORT_TYPES} from '../../../const';
 import {extend} from '../../../utils';
 
 const initialState = {
-  city: cities[0],
-  sortType: sortTypes[0],
+  city: CITIES[0],
+  sortType: SORT_TYPES[0],
   activeCardId: null
 };
 
