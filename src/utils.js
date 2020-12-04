@@ -73,10 +73,7 @@ export const isArraysEqual = (arr1, arr2) => {
   return true;
 };
 
-export const changeFavoriteStatus = (offers, id) => {
-  const index = offers.findIndex((it) => it.id === id);
-  const updatedOffer = offers[index];
-  const isFavorite = updatedOffer.isFavorite;
-  updatedOffer.isFavorite = !isFavorite;
+export const changeFavoriteStatus = (offers, updatedOffer) => {
+  const index = offers.findIndex((it) => it.id === updatedOffer.id);
   return [...offers.slice(0, index), updatedOffer, ...offers.slice(index + 1)];
 };

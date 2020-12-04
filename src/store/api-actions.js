@@ -45,5 +45,5 @@ export const sendComment = (id, {comment, rating}) => (dispatch, _getState, api)
 
 export const addOfferToFavorites = (id, status) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`)
-    .then(() => dispatch(ActionCreator.addOfferToFavorites(id)))
+    .then(({data}) => dispatch(ActionCreator.addOfferToFavorites(data)))
 );

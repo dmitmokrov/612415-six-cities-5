@@ -46,13 +46,8 @@ const appData = (state = initialState, action) => {
       return extend(
           state,
           {
-            offers: changeFavoriteStatus(state.offers, action.payload),
-            offer: state.offer && extend(
-                state.offer,
-                {
-                  isFavorite: !state.offer.isFavorite
-                }
-            )
+            offers: changeFavoriteStatus(state.offers, adaptToClient(action.payload)),
+            offer: state.offer && adaptToClient(action.payload)
           }
       );
   }

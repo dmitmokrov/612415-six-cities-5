@@ -30,9 +30,9 @@ export const ActionCreator = {
   resetActiveCard: () => ({
     type: ActionType.RESET_ACTIVE_CARD
   }),
-  addOfferToFavorites: (offerId) => ({
+  addOfferToFavorites: (updatedOffer) => ({
     type: ActionType.ADD_OFFER_TO_FAVORITES,
-    payload: offerId
+    payload: updatedOffer
   }),
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
