@@ -27,7 +27,7 @@ Array [
     </svg>
   </label>,
   <input
-    checked={false}
+    checked={true}
     className="form__rating-input visually-hidden"
     id="4-stars"
     name="rating"

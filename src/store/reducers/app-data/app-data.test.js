@@ -8,6 +8,41 @@ import {adaptToClient, adaptCommentToClient, changeFavoriteStatus} from "../../.
 
 const api = createApi(() => {});
 
+const updatedOffer = {
+  bedrooms: 3,
+  city: {
+    location: {
+      latitude: 52.370216,
+      longitude: 4.895168,
+      zoom: 10
+    },
+    name: `Amsterdam`
+  },
+  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  host: {
+    avatar: `img/1.png`,
+    id: 3,
+    isPro: true,
+    name: `Angelina`
+  },
+  id: 1,
+  images: [`img/1.png`, `img/2.png`],
+  isFavorite: true,
+  isPremium: false,
+  location: {
+    latitude: 52.35514938496378,
+    longitude: 4.673877537499948,
+    zoom: 8
+  },
+  maxAdults: 4,
+  previewImage: `img/1.png`,
+  price: 120,
+  rating: 4.8,
+  title: `Beautiful & luxurious studio at great location`,
+  type: `apartment`
+};
+
 const offers = [
   {
     bedrooms: 3,
@@ -186,15 +221,15 @@ it(`Reducer should update comments by load comments`, () => {
 it(`Reducer should update favorite status of one offer in offers`, () => {
   expect(appData({
     offers,
-    offer: null,
+    offer: offers[0],
     nearbyOffers: [],
     comments: []
   }, {
     type: ActionType.ADD_OFFER_TO_FAVORITES,
-    payload: 1,
+    payload: updatedOffer,
   })).toEqual({
-    offers: changeFavoriteStatus(offers, 1),
-    offer: null,
+    offers: changeFavoriteStatus(offers, adaptToClient(updatedOffer)),
+    offer: adaptToClient(updatedOffer),
     nearbyOffers: [],
     comments: []
   });
@@ -289,14 +324,14 @@ describe(`Async operation work correctly`, () => {
 
     apiMock
       .onPost(`${ApiRoute.FAVORITE}/${id}/${status}`)
-      .reply(200, {id: 1});
+      .reply(200, {id, fake: true});
 
     return favoriteStatusLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.ADD_OFFER_TO_FAVORITES,
-          payload: 1
+          payload: {id, fake: true}
         });
       });
   });
